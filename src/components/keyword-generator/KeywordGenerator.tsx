@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Button } from "@nextui-org/react";
 import fetchKeywords  from "../../api/v1/keywords/KeywordsMutations"
 
-function ProcessJobDescription() {
+function KeywordGenerator() {
   
   const [ formData, setFormData ] = useState({
     jobDescription: ''
@@ -33,14 +33,12 @@ function ProcessJobDescription() {
     }
   };
 
-  const colors = ["text-lime-700", "text-blue-700", "text-red-700", "text-yellow-700"];
-
   return (
     <form className="w-full" onSubmit={handleSubmit}>
       <div>
-        <div className=" px-3 mb-6 md:mb-0 flex">
+        <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
           <div className="w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-lime-700 text-base font-light mb-2" >
+            <label className="block uppercase tracking-wide text-custom-blue text-base font-light mb-2" >
               Job description
             </label>
 
@@ -54,12 +52,12 @@ function ProcessJobDescription() {
             </div>
 
           <div className="w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-lime-700 text-base font-light mb-2" >
+            <label className="block uppercase tracking-wide text-custom-blue text-base font-light mb-2" >
               Generated Keywords
             </label>
 
             <div
-              className=" whitespace-pre-wrap leading-loose block w-full h-96 bg-gray-50 text-lime-700 text-lg tracking-wide border border-gray-500 rounded pt-4 px-12 mb-3 leading-tight focus:outline-none focus:bg-white overflow-auto"
+              className=" whitespace-pre-wrap leading-loose block w-full h-96 bg-gray-50 text-text-blue text-lg tracking-wide border border-gray-500 rounded pt-4 px-12 mb-3 focus:outline-none focus:bg-white overflow-auto"
             >
               {keywords}
             </div>
@@ -69,7 +67,7 @@ function ProcessJobDescription() {
 
 
       <div className="flex justify-center mt-4">
-        <Button type="submit" className="bg-lime-700 text-white rounded text-center px-6 py-1">
+        <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
             <span>Generate keywords </span>
         </Button>  
       </div>
@@ -77,4 +75,4 @@ function ProcessJobDescription() {
   );
 }
 
-export default ProcessJobDescription;
+export default KeywordGenerator;
