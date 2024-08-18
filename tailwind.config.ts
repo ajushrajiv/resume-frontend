@@ -17,6 +17,8 @@ const config: Config = {
         'custom-blue': 'rgb(27, 26, 85)',
         'text-blue':'rgb(83, 92, 145)',
         'text-foreground':'rgb(155, 236, 0)',
+        'button-blue':'rgb(146, 144, 195)',
+        'title-blue':'rgb(83, 92, 145)'
       },
     },
   },
