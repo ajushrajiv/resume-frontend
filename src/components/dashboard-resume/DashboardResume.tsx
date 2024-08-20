@@ -4,8 +4,24 @@ import TableHeader from '../reusable-components/TableHeader';
 import TableRow from '../reusable-components/TableRow';
 import Table from '../reusable-components/Table';
 import { DashboardContentProps } from '@/interfaces/DashboardContentProps';
+import fetchupdatestatus from '@/api/v1/dashboard/DashboardMutations';
 
 const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
+
+    const [jobStatus, setJobStatus] = useState<{ [id: number]: string }>({});
+
+    const handleStatusUpdate = async (newStatus: string, id: number) => {
+        try {
+            const response = await fetchupdatestatus(newStatus, id);
+            console.log('Status updated successfully', response.data);
+            setJobStatus(prevStatus => ({
+                ...prevStatus,
+                [id]: newStatus,
+            }));       
+         } catch (error) {
+            console.error('Error updating status', error);
+        }
+    };
 
     return(
         <Table>
@@ -21,12 +37,14 @@ const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
                 {results.map((result, index) => (
                     <TableRow 
                         key={index}
+                        id={result.id}
                         jobDescription={result.jobDescription}
                         resume={result.resume}
                         companyName={result.companyName}
                         jobTitle={result.jobTitle}
-                        jobStatus={result.jobStatus}
+                        jobStatus={jobStatus[result.id] || result.jobStatus}
                         matchDate={result.matchDate}
+                        onStatusChange={ handleStatusUpdate }
                     />
                 ))}
             </tbody>

@@ -1,18 +1,20 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from "@nextui-org/react";
-import { useRouter } from 'next/router';
 import fetchComparison from '@/api/v1/compare/CompareMutations';
 import Label from '../reusable-components/Label';
 import TextArea from '../reusable-components/TextArea';
+import InputComponent from '../reusable-components/InputComponent';
 
 function CompareJobResume() {
   
   const [ formData, setFormData ] = useState({
     jobDescription: '',
-    resume:''
-  });
+    resume:'',
+    companyName:'',
+    jobTitle:''
+    });
 
   const [comparisonResult, setComparisonResult] = useState<null | {
     matchPercentage: number;
@@ -20,7 +22,7 @@ function CompareJobResume() {
     nonMatchingWords: string[];
   }>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -28,7 +30,7 @@ function CompareJobResume() {
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try{        
-      const result = await fetchComparison(formData.jobDescription, formData.resume);
+      const result = await fetchComparison(formData.jobDescription, formData.resume,formData.companyName, formData.jobTitle);
       setComparisonResult(result);
 
     }catch(e){
@@ -39,6 +41,27 @@ function CompareJobResume() {
   return (
   <div>
     <form className="w-full" onSubmit={handleSubmit}>
+    <div>
+        <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
+            <div className="w-1/2 px-3">
+              <Label text='Company Name' />
+              <InputComponent 
+                name="companyName"
+                value={formData.companyName}
+                onChange={handleChange}
+                placeholder='Company name' /> 
+            </div>
+
+            <div className="w-1/2 px-3">
+              <Label text='Job title' />
+              <InputComponent 
+                name="jobTitle"
+                value={formData.jobTitle}
+                onChange={handleChange}
+                placeholder='Job title' /> 
+            </div>          
+        </div>
+      </div>
       <div>
         <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
             <div className="w-1/2 px-3">
