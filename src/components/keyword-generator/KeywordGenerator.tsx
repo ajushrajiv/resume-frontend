@@ -3,6 +3,9 @@
 import React, { useState } from 'react';
 import { Button } from "@nextui-org/react";
 import fetchKeywords  from "../../api/v1/keywords/KeywordsMutations"
+import TextArea from '../reusable-components/TextArea';
+import Label from '../reusable-components/Label';
+import KeywordDisplay from '../reusable-components/KeywordDisplay';
 
 function KeywordGenerator() {
   
@@ -25,7 +28,6 @@ function KeywordGenerator() {
     
       // Remove commas and add spaces
       const formattedKeywords = keywordsString.replace(/[",.\/!$%\^&\*;:{}=\`~()]/g, '         ');
-      console.log(formattedKeywords);
       
       setKeywords(formattedKeywords);
     }catch(e){
@@ -38,29 +40,18 @@ function KeywordGenerator() {
       <div>
         <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
           <div className="w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-custom-blue text-base font-light mb-2" >
-              Job description
-            </label>
-
-            <textarea
-              className="appearance-none block w-full h-96 bg-gray-50 text-black border border-gray-500 rounded py-3 px-12 mb-3 leading-tight focus:outline-none focus:bg-white text-left overflow-auto"
-              placeholder="Paste the job description"
+            <Label text='Job description' />
+            <TextArea
               name="jobDescription"
               value={formData.jobDescription}
               onChange={handleChange}
+              placeholder="Paste the job description"
             />
             </div>
 
           <div className="w-1/2 px-3">
-            <label className="block uppercase tracking-wide text-custom-blue text-base font-light mb-2" >
-              Generated Keywords
-            </label>
-
-            <div
-              className=" whitespace-pre-wrap leading-loose block w-full h-96 bg-gray-50 text-text-blue text-lg tracking-wide border border-gray-500 rounded pt-4 px-12 mb-3 focus:outline-none focus:bg-white overflow-auto"
-            >
-              {keywords}
-            </div>
+            <Label text='Generated keywords' />
+            <KeywordDisplay keywords={keywords} />
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
 "use client"
 
-import { usePathname } from 'next/navigation';
-import { NextUIProvider } from '@nextui-org/react';
-import React, { useState } from "react";
+import { usePathname, useRouter } from 'next/navigation';
+import React, { useEffect } from "react";
 import KeywordGenerator from '@/components/keyword-generator/KeywordGenerator';
 import HomeResume from '@/components/home-resume/HomeResume';
 import CompareJobResume from '@/components/compare-job-resume/CompareJobResume';
@@ -11,7 +10,14 @@ import NavbarResume from '@/components/navbar-resume/NavbarResume';
 
 export default function Home() {
   const pathname = usePathname();
+  const router = useRouter();
 
+  useEffect(() => {
+    if (pathname === "/") {
+      router.push("/home-resume");
+    }
+  }, [pathname, router]);
+  
   return (
     <div>
       <NavbarResume />
