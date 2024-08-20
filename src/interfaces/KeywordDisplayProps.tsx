@@ -1,0 +1,3 @@
+interface KeywordDisplayProps {
+    keywords: string;
+  }

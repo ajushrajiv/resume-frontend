@@ -1,0 +1,3 @@
+interface LabelProps {
+    text: string;
+  }
