@@ -6,5 +6,6 @@
   jobTitle: string;
   jobStatus: string;
   matchDate: Date;
-  onStatusChange: (newStatus: string,id: number) => void;
+  onStatusChange: ( newStatus: string,id: number ) => void;
+  onJobDescriptionClick: ( id: number ) => void;
 }
