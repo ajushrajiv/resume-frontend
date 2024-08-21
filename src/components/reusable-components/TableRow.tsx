@@ -11,7 +11,8 @@ const TableRow: React.FC<DescriptionResumeInfo & { onStatusChange: (newStatus: s
   jobTitle, 
   jobStatus, 
   matchDate,
-  onStatusChange
+  onStatusChange,
+  onJobDescriptionClick
 }) => {
   const formattedDate = matchDate ? new Date(matchDate).toLocaleDateString() : 'N/A';
 
@@ -30,9 +31,12 @@ const TableRow: React.FC<DescriptionResumeInfo & { onStatusChange: (newStatus: s
 
   return (
     <tr className="bg-white border-b dark:bg-white dark:border-gray-700">
-        <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black">
-            {truncateText(jobDescription, 15)}
-        </th>
+          <th 
+            scope="row" 
+            onClick={() => onJobDescriptionClick(id)} 
+            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-black underline decoration-1 cursor-pointer">
+              {truncateText(jobDescription, 15)}
+          </th>
         <td className="px-6 py-4">{truncateText(resume, 15)}</td>
         <td className="px-6 py-4">{truncateText(companyName, 15)}</td>
         <td className="px-6 py-4">{truncateText(jobTitle, 15)}</td>

@@ -1,5 +1,7 @@
 "use client"
+
 import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import TableHeader from '../reusable-components/TableHeader';
 import TableRow from '../reusable-components/TableRow';
 import Table from '../reusable-components/Table';
@@ -9,6 +11,7 @@ import fetchupdatestatus from '@/api/v1/dashboard/DashboardMutations';
 const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
 
     const [jobStatus, setJobStatus] = useState<{ [id: number]: string }>({});
+    const router = useRouter();
 
     const handleStatusUpdate = async (newStatus: string, id: number) => {
         try {
@@ -22,6 +25,11 @@ const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
             console.error('Error updating status', error);
         }
     };
+
+    const handleJobDescriptionClick = (id: number) => {
+        router.push(`/summary-job-resume?id=${id}`);
+    };
+
 
     return(
         <Table>
@@ -45,6 +53,7 @@ const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
                         jobStatus={jobStatus[result.id] || result.jobStatus}
                         matchDate={result.matchDate}
                         onStatusChange={ handleStatusUpdate }
+                        onJobDescriptionClick={() => handleJobDescriptionClick(result.id)}
                     />
                 ))}
             </tbody>
