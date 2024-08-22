@@ -1,14 +1,20 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@nextui-org/react";
 import fetchComparison from '@/api/v1/compare/CompareMutations';
 import Label from '../reusable-components/Label';
 import TextArea from '../reusable-components/TextArea';
 import InputComponent from '../reusable-components/InputComponent';
+import { useSearchParams } from 'next/navigation'
 
 function CompareJobResume() {
-  
+
+  const searchParams = useSearchParams();
+  const id = searchParams.get('id');
+  const resume = searchParams.get('resume');
+  const jobDescription = searchParams.get('jobDescription');
+
   const [ formData, setFormData ] = useState({
     jobDescription: '',
     resume:'',
@@ -22,6 +28,17 @@ function CompareJobResume() {
     nonMatchingWords: string[];
   }>(null);
 
+  useEffect(() => {
+    // Set form data when component mounts and URL params are available
+    if (resume && jobDescription) {
+      setFormData((prevData) => ({
+        ...prevData,
+        resume: String(resume),
+        jobDescription: String(jobDescription),
+      }));
+    }
+  }, [resume, jobDescription]); 
+
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -30,7 +47,12 @@ function CompareJobResume() {
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try{        
-      const result = await fetchComparison(formData.jobDescription, formData.resume,formData.companyName, formData.jobTitle);
+      const result = await fetchComparison(
+        formData.jobDescription, 
+        formData.resume,
+        formData.companyName, 
+        formData.jobTitle
+      );
       setComparisonResult(result);
 
     }catch(e){
