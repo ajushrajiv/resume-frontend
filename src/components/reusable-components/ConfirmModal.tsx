@@ -8,7 +8,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm 
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-blue p-6 rounded-lg shadow-lg">
+      <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-lg font-bold mb-4">Confirm Navigation</h2>
         <p className="mb-4">Do you want to proceed to the comparison page?</p>
         <div className="flex justify-end space-x-4">
@@ -22,7 +22,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm 
             className="bg-custom-blue text-white px-4 py-2 rounded"
             onClick={onConfirm}
           >
-            Confirm
+            Proceed
           </button>
         </div>
       </div>

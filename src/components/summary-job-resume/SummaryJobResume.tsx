@@ -109,6 +109,10 @@ const SummaryJobResume: React.FC = () => {
               editValues.resume
             )}&jobDescription=${encodeURIComponent(
               jobDetails?.JobApplicationModel.jobDescription || ''
+            )}&companyName=${encodeURIComponent(
+              jobDetails?.JobApplicationModel.companyName || ''
+            )}&jobTitle=${encodeURIComponent(
+              jobDetails?.JobApplicationModel.jobTitle || ''
             )}`;
             setRedirectUrl(redirectUrl);
             setModalOpen(true);

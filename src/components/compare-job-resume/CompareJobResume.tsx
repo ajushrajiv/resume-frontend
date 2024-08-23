@@ -14,6 +14,8 @@ function CompareJobResume() {
   const id = searchParams.get('id');
   const resume = searchParams.get('resume');
   const jobDescription = searchParams.get('jobDescription');
+  const companyName = searchParams.get('companyName');
+  const jobTitle = searchParams.get('jobTitle');
 
   const [ formData, setFormData ] = useState({
     jobDescription: '',
@@ -30,14 +32,16 @@ function CompareJobResume() {
 
   useEffect(() => {
     // Set form data when component mounts and URL params are available
-    if (resume && jobDescription) {
+    if (resume && jobDescription && companyName) {
       setFormData((prevData) => ({
         ...prevData,
         resume: String(resume),
         jobDescription: String(jobDescription),
+        companyName: String(companyName),
+        jobTitle: String(jobTitle)
       }));
     }
-  }, [resume, jobDescription]); 
+  }, [resume, jobDescription, companyName, jobTitle]); 
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
