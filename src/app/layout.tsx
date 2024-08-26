@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import NavbarResume from "@/components/navbar-resume/NavbarResume";
-import { NextUIProvider } from '@nextui-org/react';
+import { UserProvider } from "@/contexts/UserContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,10 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-          <NavbarResume />
+        <UserProvider>
           <main className="p-12 m-4 ">
-            {children}
+             {children}
           </main>
+        </UserProvider>
       </body>
     </html>
   );

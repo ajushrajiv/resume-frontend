@@ -10,6 +10,7 @@ import NavbarResume from '@/components/navbar-resume/NavbarResume';
 import { DescriptionResumeInfo } from '@/interfaces/DescriptionResumeInfoProps';
 import fetchalldetails from '@/api/v1/dashboard/DashboardQueries';
 import SummaryJobResume from '@/components/summary-job-resume/SummaryJobResume';
+import Signup from '@/components/signup/Signup';
 
 export default function Home() {
   const pathname = usePathname();
@@ -26,20 +27,17 @@ export default function Home() {
         getDetails();
     }, []);
 
-  useEffect(() => {
-    if (pathname === "/") {
-      router.push("/home-resume");
-    }
-  }, [pathname, router]);
-  
+ 
   return (
     <div>
       <NavbarResume />
+      {pathname === "/" && <HomeResume />}
       {pathname === "/home-resume" && <HomeResume />}
       {pathname === "/keyword-generator" && <KeywordGenerator />}
       {pathname === "/compare-job-resume" && <CompareJobResume />}
       {pathname === "/dashboard-resume" && <DashboardResume results={details}/>}
       {pathname === "/summary-job-resume" && <SummaryJobResume />}
+      {pathname === "/signup" && <Signup />}
     </div>
   );
 }

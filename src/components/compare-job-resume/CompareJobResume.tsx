@@ -31,6 +31,11 @@ function CompareJobResume() {
   }>(null);
 
   useEffect(() => {
+    console.log("Resume:", resume);
+    console.log("Job Description:", jobDescription);
+    console.log("Company Name:", companyName);
+    console.log("Job Title:", jobTitle);
+
     // Set form data when component mounts and URL params are available
     if (resume && jobDescription && companyName) {
       setFormData((prevData) => ({
@@ -129,7 +134,12 @@ function CompareJobResume() {
             <h4 className="text-lg font-semibold text-custom-blue mb-4">Matching Words:</h4>
             <h6 className="text-md font-semibold text-custom-blue mb-4">
                 {comparisonResult.matchingWords.map((word, index) => (
-                    <li key={index}>{word}</li>
+                  <span 
+                    key={index} 
+                    className="inline-block bg-pink-100 text-blue-800 px-2 py-1 rounded-full mr-2 mb-2"
+                  >
+                    {word}
+                  </span>                
                 ))}
             </h6>
           </div>
@@ -137,7 +147,12 @@ function CompareJobResume() {
             <h4 className="text-lg font-semibold text-custom-blue mb-4">Non-Matching Words:</h4>
             <h6 className="text-md font-semibold text-custom-blue mb-4">
                 {comparisonResult.nonMatchingWords.map((word, index) => (
-                    <li key={index}>{word}</li>
+                  <span 
+                    key={index} 
+                    className="inline-block bg-pink-100 text-blue-800 px-2 py-1 rounded-full mr-2 mb-2"
+                  >
+                    {word}
+                  </span>               
                 ))}
             </h6>
           </div>

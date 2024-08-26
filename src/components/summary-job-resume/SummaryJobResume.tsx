@@ -9,6 +9,7 @@ import fetchEditCompanyName from '@/api/v1/summary/summary-mutations/FetchEditCo
 import fetchsinglejobdetails from '@/api/v1/summary/summary-queries/SummaryQueries';
 import { useRouter } from 'next/navigation';
 import ConfirmModal from '../reusable-components/ConfirmModal';
+import { format } from 'date-fns';
 
 const SummaryJobResume: React.FC = () => {
 
@@ -145,10 +146,14 @@ const SummaryJobResume: React.FC = () => {
   return (
     <div className="p-5 bg-white text-custom-blue shadow-md rounded-lg">
       <h1 className="text-2xl font-bold mb-4">Job Details for ID: {id}</h1>
-      <h6 className="text-2xl font-bold mb-4">Job Description</h6>
-      <div className="text-lg font-bold mb-4">{jobDetails?.JobApplicationModel.jobDescription}</div>
-
-      <h6 className="text-2xl font-bold mb-4">Company name</h6>
+      
+      
+      <h6 className="text-2xl font-bold mb-4 flex items-center">
+        Company name
+        <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, companyName: true }))}>
+          <CiEdit className="ml-2" />
+        </button>
+      </h6>
       {editMode.companyName ? (
         <div>
           <input
@@ -157,40 +162,19 @@ const SummaryJobResume: React.FC = () => {
             onChange={(e) => handleInputChange('companyName', e.target.value)}
           />
           <button onClick={() => handleSave('companyName')}>
-          <CiSaveUp2 />
+            <CiSaveUp2 className="ml-2" />
           </button>
         </div>
       ) : (
-        <div className="text-lg font-bold mb-4">
-          {jobDetails?.JobApplicationModel.companyName}
-          <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, companyName: true }))}>
-            <CiEdit />
-          </button>
-        </div>
+        <div className="text-lg font-medium mb-4">{jobDetails?.JobApplicationModel.companyName}</div>
       )}
 
-      <h6 className="text-2xl font-bold mb-4">Resume</h6>
-      {editMode.resume ? (
-        <div>
-          <textarea
-            className="border p-2 mb-2 w-full"
-            value={editValues.resume}
-            onChange={(e) => handleInputChange('resume', e.target.value)}
-          />
-          <button onClick={() => handleSave('resume')}>
-            <CiSaveUp2 />
-          </button>
-        </div>
-      ) : (
-        <div className="text-lg font-bold mb-4">
-          {jobDetails?.JobApplicationModel.resume}
-          <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, resume: true }))}>
-            <CiEdit />
-          </button>
-        </div>
-      )}
-
-      <h6 className="text-2xl font-bold mb-4">Job title</h6>
+      <h6 className="text-2xl font-bold mb-4 flex items-center">
+        Job title
+        <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, jobTitle: true }))}>
+          <CiEdit className="ml-2" />
+        </button>
+      </h6>
       {editMode.jobTitle ? (
         <div>
           <input
@@ -199,29 +183,71 @@ const SummaryJobResume: React.FC = () => {
             onChange={(e) => handleInputChange('jobTitle', e.target.value)}
           />
           <button onClick={() => handleSave('jobTitle')}>
-            <CiSaveUp2 />
+            <CiSaveUp2 className="ml-2" />
           </button>
         </div>
       ) : (
-        <div className="text-lg font-bold mb-4">
-          {jobDetails?.JobApplicationModel.jobTitle}
-          <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, jobTitle: true }))}>
-            <CiEdit />
+        <div className="text-lg font-medium mb-4">{jobDetails?.JobApplicationModel.jobTitle}</div>
+      )}
+
+      <h6 className="text-2xl font-bold mb-4">Match Percentage</h6>
+      <div className="text-lg font-medium mb-4">{jobDetails?.matchPercentage}%</div>
+
+      <h6 className="text-2xl font-bold mb-4">Job Description</h6>
+      <div className="text-lg font-medium mb-4">{jobDetails?.JobApplicationModel.jobDescription}</div>
+
+      <h6 className="text-2xl font-bold mb-4 flex items-center">
+        Resume
+        <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, resume: true }))}>
+          <CiEdit className="ml-2" />
+        </button>
+      </h6>
+      {editMode.resume ? (
+        <div>
+          <textarea
+            className="border p-2 mb-2 w-full"
+            value={editValues.resume}
+            onChange={(e) => handleInputChange('resume', e.target.value)}
+          />
+          <button onClick={() => handleSave('resume')}>
+            <CiSaveUp2 className="ml-2" />
           </button>
         </div>
+      ) : (
+        <div className="text-lg font-medium mb-4">{jobDetails?.JobApplicationModel.resume}</div>
       )}
 
       <h6 className="text-2xl font-bold mb-4">Comparison date</h6>
-      <div className="text-lg font-bold mb-4">{jobDetails?.JobApplicationModel.matchDate}</div>
-
-      <h6 className="text-2xl font-bold mb-4">Match Percentage</h6>
-      <div className="text-lg font-bold mb-4">{jobDetails?.matchPercentage}%</div>
+      <div className="text-lg font-medium mb-4">
+        {jobDetails?.JobApplicationModel.matchDate
+          ? format(new Date(jobDetails.JobApplicationModel.matchDate), 'MMMM dd, yyyy')
+          : 'N/A'
+        }
+      </div>
 
       <h6 className="text-2xl font-bold mb-4">Matching Words</h6>
-      <div className="text-lg font-bold mb-4">{jobDetails?.matchingWords}</div>
+      <div className="text-lg font-medium mb-4">
+        {jobDetails?.matchingWords?.map((word, index) => (
+          <span 
+            key={index} 
+            className="inline-block bg-pink-100 text-blue-800 px-2 py-1 rounded-full mr-2 mb-2"
+          >
+            {word}
+          </span>
+        ))}
+      </div>
 
       <h6 className="text-2xl font-bold mb-4">Non-matching words</h6>
-      <div className="text-lg font-bold mb-4">{jobDetails?.nonMatchingWords}</div>
+      <div className="text-lg font-medium mb-4">
+        {jobDetails?.nonMatchingWords?.map((word, index) => (
+          <span 
+            key={index} 
+            className="inline-block bg-pink-100 text-blue-800 px-2 py-1 rounded-full mr-2 mb-2"
+          >
+            {word}
+          </span>
+        ))}
+      </div>
     
       <ConfirmModal
         isOpen={isModalOpen}
