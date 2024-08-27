@@ -99,7 +99,7 @@ function Signup() {
         </div>
       </div>
       <div className="flex justify-center mt-4">
-          <h4 className='text-custom-blue text-lg'>Click here to login</h4><Link href="/home-resume" className='text-custom-blue text-lg underline'>Login</Link>
+          <h4 className='text-custom-blue text-lg'>Click here to login</h4><Link href="/login" className='text-custom-blue text-lg underline'>Login</Link>
       </div>
       <div className="flex justify-center mt-4">
           <ResumeButton text="Signup" />

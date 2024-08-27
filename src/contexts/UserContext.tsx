@@ -11,7 +11,7 @@ const UserContext = createContext<InterfaceUserContextType | undefined>(undefine
 
 export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
-    const [ user, setUser ] = useState(null);
+    const [ user, setUser ] = useState<InterfaceUser | null>(null);
 
     const logOutUser = useCallback(() => {
       setUser(null);
@@ -22,10 +22,11 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) 
     const loadCurrentUser = useCallback(async() => {
       try{
         const result = await currentUser();
-    
-        if (result.user) {
-          setUser(result.user);
+        console.log("CurrentUser from the Usercontext",result)
+        if (result) {
+          setUser(result);
         }
+        console.log("CurrentUser from the Usercontext2",result)
       }catch(error:any){
         if(error.response.status === 403){
           logOutUser();
@@ -48,8 +49,8 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) 
         try {
             const{ user, accessToken } = await currentLoginUser(email, password);
             if (user && accessToken) {
-              setUser(user);
               saveAccessTokens(accessToken);
+              setUser(user);
               validateUser(accessToken);
               return user; 
           } else {
@@ -94,7 +95,7 @@ export const UserProvider: React.FC<{children: React.ReactNode}> = ({children}) 
     }
 
     return (
-        <UserContext.Provider value={{ user, loginUser, logOutUser, dataSignUpUser }}>
+        <UserContext.Provider value={{ user, loginUser, logOutUser, dataSignUpUser, loadCurrentUser }}>
           {children}
         </UserContext.Provider>
       );

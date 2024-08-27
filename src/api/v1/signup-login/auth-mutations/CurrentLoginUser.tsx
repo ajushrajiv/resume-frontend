@@ -1,7 +1,7 @@
 import api from "@/api/config/api";
 import { saveAccessTokens } from "@/utils/TokenHandler";
 
-async function currentLoginUser(email: string, password: string){
+async function currentLoginUser(email: string, password: string):Promise<InterfaceLoginResponse>{
 
     const result = await api.post("/auth/login",{
         email,password

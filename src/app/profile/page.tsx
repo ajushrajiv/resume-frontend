@@ -1,13 +1,14 @@
 "use client";
+
 import NavbarResume from "@/components/navbar-resume/NavbarResume";
-import Signup from "@/components/signup/Signup";
+import Profile from "@/components/profile/Profile";
 import { NextUIProvider } from "@nextui-org/react";
 
-export default function SignupPage() {
+export default function ProfilePage() {
   return (
     <NextUIProvider>
       <NavbarResume />
-      <Signup />
+      <Profile />
     </NextUIProvider>
   );
 }

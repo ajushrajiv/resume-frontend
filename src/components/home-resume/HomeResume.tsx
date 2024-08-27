@@ -31,6 +31,11 @@ function HomeResume() {
             buttonText="Dashboard"
           />
         </div>
+
+        <div className="flex justify-center mt-4">
+        <a className='text-custom-blue text-lg' href="/profile">Profile</a>
+      </div>
+      
       </div>
     </div>
   );
