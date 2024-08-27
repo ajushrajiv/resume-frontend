@@ -5,8 +5,8 @@ import HomeResumeCard from '../reusable-components/HomeResumeCard';
 
 function HomeResume() {
   return (
-    <div className='mt-12 ml-24 mr-24 flex items-center justify-center'>
-      <div role="status" className="w-3/4 space-y-4 border-gray-100 divide-y divide-gray-100 rounded shadow dark:divide-gray-100 md:p-6 dark:border-gray-100">
+    <div className='mt-12 ml-24 mr-24 flex items-center justify-center '>
+      <div role="status" className=" bg-gradient-to-r from-from-background to-to-background w-3/4 space-y-4 border-gray-100 rounded shadow dark:divide-gray-100 md:p-6 dark:border-gray-100">
         <div className="flex items-center justify-between">
           <HomeResumeCard
             href="/keyword-generator"
@@ -31,6 +31,11 @@ function HomeResume() {
             buttonText="Dashboard"
           />
         </div>
+
+        <div className="flex justify-center mt-4">
+        <a className='text-custom-blue text-lg' href="/profile">Profile</a>
+      </div>
+      
       </div>
     </div>
   );

@@ -18,7 +18,12 @@ const config: Config = {
         'text-blue':'rgb(83, 92, 145)',
         'text-foreground':'rgb(155, 236, 0)',
         'button-blue':'rgb(146, 144, 195)',
-        'title-blue':'rgb(83, 92, 145)'
+        'title-blue':'rgb(83, 92, 145)',
+        'from-navbar':'rgb(205, 245, 253)',
+        'to-navbar':'rgb(234, 253, 252)',
+        'to-background':'rgb(160, 228, 255)',
+        'from-background':'rgb(160, 199, 255)',
+        
       },
     },
   },

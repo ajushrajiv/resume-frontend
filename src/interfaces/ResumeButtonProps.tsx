@@ -1,0 +1,3 @@
+interface ResumeButtonProps {
+    text: string;
+  }
