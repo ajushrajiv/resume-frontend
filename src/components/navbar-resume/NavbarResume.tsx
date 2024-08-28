@@ -1,12 +1,24 @@
 "use client"
 
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Link from 'next/link';
 import ResumeButton from "../reusable-components/ResumeButton";
+import UserContext from "@/contexts/UserContext";
 
 function NavbarResume(){
 
     const [isOpen, setIsOpen] = useState(false);
+    const userContext = useContext(UserContext);
+
+    if (!userContext) {
+        throw new Error("UserContext is undefined, make sure NavbarResume is wrapped in a UserProvider");
+    }
+
+    const { user, logOutUser } = userContext;
+
+    const handleLogout = () => {
+        logOutUser();
+    };
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -19,9 +31,21 @@ function NavbarResume(){
                     <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-custom-blue ">MatchMyResume</span>
                 </Link>
                 <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                    <Link href="/signup">
-                        <ResumeButton text="SignUp"/>
-                    </Link>
+                {user ? (
+                        <>
+                            <span className="text-custom-blue">Hello, {user.username}</span>
+                            <button 
+                                className="bg-custom-blue hover:bg-button-blue text-white font-bold py-2 px-4 rounded"
+                                onClick={handleLogout} 
+                            >
+                                SignOut
+                            </button>
+                        </>
+                    ) : (
+                        <Link href="/signup">
+                            <ResumeButton text="SignUp" />
+                        </Link>
+                    )}
 
                     <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-custom-blue rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-custom-blue dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
                         <span className="sr-only">Open main menu</span>
