@@ -1,8 +1,9 @@
 import api from "../../config/api";
 
-async function fetchalldetails(){
-    const results = await api.get("dashboard/allresults")
+async function fetchdetailsbyuserid(userId: number){
+    const results = await api.get(`dashboard/allresults?`, { params: {userId}})
     return results;
 }
 
-export default fetchalldetails ;
+export default fetchdetailsbyuserid ;
+
