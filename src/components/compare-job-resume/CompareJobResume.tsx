@@ -1,12 +1,13 @@
 "use client"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button } from "@nextui-org/react";
 import fetchComparison from '@/api/v1/compare/CompareMutations';
 import Label from '../reusable-components/Label';
 import TextArea from '../reusable-components/TextArea';
 import InputComponent from '../reusable-components/InputComponent';
 import { useSearchParams } from 'next/navigation'
+import UserContext from '@/contexts/UserContext';
 
 function CompareJobResume() {
 
@@ -30,7 +31,15 @@ function CompareJobResume() {
     nonMatchingWords: string[];
   }>(null);
 
+  const userContext = useContext(UserContext);
+  if (!userContext) {
+    throw new Error("UserContext is undefined, make sure NavbarResume is wrapped in a UserProvider");
+  }
+
+  const { user } = userContext;
+
   useEffect(() => {
+    console.log("user",user)
     console.log("Resume:", resume);
     console.log("Job Description:", jobDescription);
     console.log("Company Name:", companyName);
@@ -46,7 +55,7 @@ function CompareJobResume() {
         jobTitle: String(jobTitle)
       }));
     }
-  }, [resume, jobDescription, companyName, jobTitle]); 
+  }, [resume, jobDescription, companyName, jobTitle, user]); 
 
   const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -56,14 +65,18 @@ function CompareJobResume() {
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     try{        
-      const result = await fetchComparison(
-        formData.jobDescription, 
-        formData.resume,
-        formData.companyName, 
-        formData.jobTitle
-      );
-      setComparisonResult(result);
-
+      if(user){
+        const result = await fetchComparison(
+          formData.jobDescription, 
+          formData.resume,
+          formData.companyName, 
+          formData.jobTitle,
+          user.id
+        );
+        setComparisonResult(result);
+      }else{
+        console.log("User not logged in");
+      }
     }catch(e){
         console.log("Processing failed", e);
     }

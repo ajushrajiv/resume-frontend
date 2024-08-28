@@ -1,6 +1,7 @@
 interface InterfaceUser {
-    id: string;
+    id: number;
     username: string;
     email: string;
     profileImgUrl?: string;
+    userId:number;
   }
