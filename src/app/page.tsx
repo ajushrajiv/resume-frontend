@@ -40,7 +40,6 @@ export default function Home() {
     <div>
       <NavbarResume />
       {pathname === "/" && <HomeResume />}
-      {pathname === "/home-resume" && <HomeResume />}
       {pathname === "/keyword-generator" && <KeywordGenerator />}
       {pathname === "/compare-job-resume" && <CompareJobResume />}
       {pathname === "/dashboard-resume" && <DashboardResume results={details}/>}

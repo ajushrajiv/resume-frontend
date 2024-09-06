@@ -10,6 +10,7 @@ const TextArea: React.FC<TextAreaProps> = ({ name, value, onChange, placeholder 
         name={name}
         value={value}
         onChange={onChange}
+        spellCheck="false"
     />
   );
 }
