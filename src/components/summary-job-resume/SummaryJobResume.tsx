@@ -145,9 +145,7 @@ const SummaryJobResume: React.FC = () => {
 
   return (
     <div className="p-5 bg-white text-custom-blue shadow-md rounded-lg">
-      <h1 className="text-2xl font-bold mb-4">Job Details for ID: {id}</h1>
-      
-      
+            
       <h6 className="text-2xl font-bold mb-4 flex items-center">
         Company name
         <button onClick={() => setEditMode((prevMode) => ({ ...prevMode, companyName: true }))}>

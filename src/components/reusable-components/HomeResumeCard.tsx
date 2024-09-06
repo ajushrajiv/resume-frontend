@@ -4,7 +4,7 @@ import React from 'react';
 
 const HomeResumeCard: React.FC<HomeResumeCardProps> = ({ href, title, description, buttonText }) => {
   return (
-    <div className="w-full p-6 bg-white border border-gray-100 rounded-lg shadow dark:bg-white dark:border-gray-100">
+    <div className="max-w-lg max-h-96	p-6 bg-white border border-gray-100 rounded-lg shadow dark:bg-white dark:border-gray-100">
       <a href={href}>
         <h5 className="mb-2 text-lg font-medium tracking-tight text-title-blue dark:text-title-blue">
           {title}

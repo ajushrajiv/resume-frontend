@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        glegoo: ['Glegoo', 'serif'], 
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -15,8 +18,9 @@ const config: Config = {
       },
       colors: {
         'custom-blue': 'rgb(27, 26, 85)',
+        'icon-color':'rgb(153, 163, 167)',
         'text-blue':'rgb(83, 92, 145)',
-        'text-foreground':'rgb(155, 236, 0)',
+        'text-foreground':'rgb(155, 236, 0)',//green
         'button-blue':'rgb(146, 144, 195)',
         'title-blue':'rgb(83, 92, 145)',
         'from-navbar':'rgb(205, 245, 253)',

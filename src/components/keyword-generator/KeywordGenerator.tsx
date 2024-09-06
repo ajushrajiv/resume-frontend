@@ -36,34 +36,36 @@ function KeywordGenerator() {
   };
 
   return (
-    <form className="w-full" onSubmit={handleSubmit}>
-      <div>
-        <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
-          <div className="w-1/2 px-3">
-            <Label text='Job description' />
-            <TextArea
-              name="jobDescription"
-              value={formData.jobDescription}
-              onChange={handleChange}
-              placeholder="Paste the job description"
-            />
-            </div>
+    <div >
+      <form className="w-full" onSubmit={handleSubmit}>
+        <div>
+          <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
+            <div className="w-1/2 px-3">
+              <Label text='Job description' />
+              <TextArea
+                name="jobDescription"
+                value={formData.jobDescription}
+                onChange={handleChange}
+                placeholder="Paste the job description"
+              />
+              </div>
 
-          <div className="w-1/2 px-3">
-            <Label text='Generated keywords' />
-            <KeywordDisplay keywords={keywords} />
+            <div className="w-1/2 px-3">
+              <Label text='Generated keywords' />
+                <KeywordDisplay keywords={keywords}/>
+            </div>
           </div>
         </div>
-      </div>
 
 
-      <div className="flex justify-center mt-4">
-        <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
-            <span>Generate keywords </span>
-        </Button>  
-      </div>
-    </form>
-  );
+        <div className="flex justify-center mt-4">
+          <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
+              <span>Generate keywords </span>
+          </Button>  
+        </div>
+      </form>
+    </div>
+ );
 }
 
 export default KeywordGenerator;
