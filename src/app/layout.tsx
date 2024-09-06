@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { UserProvider } from "@/contexts/UserContext";
+import NavbarResume from "@/components/navbar-resume/NavbarResume";
+import Template from "./template";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +25,12 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <UserProvider>
-          <main className="p-12 m-4 ">
-             {children}
-          </main>
+          <NavbarResume />
+          <Template>
+            <main className="p-12 m-4 ">
+              {children}
+            </main>
+          </Template>
         </UserProvider>
       </body>
     </html>

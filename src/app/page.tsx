@@ -6,7 +6,6 @@ import KeywordGenerator from '@/components/keyword-generator/KeywordGenerator';
 import HomeResume from '@/components/home-resume/HomeResume';
 import CompareJobResume from '@/components/compare-job-resume/CompareJobResume';
 import DashboardResume from '@/components/dashboard-resume/DashboardResume';
-import NavbarResume from '@/components/navbar-resume/NavbarResume';
 import { DescriptionResumeInfo } from '@/interfaces/DescriptionResumeInfoProps';
 import SummaryJobResume from '@/components/summary-job-resume/SummaryJobResume';
 import Signup from '@/components/signup/Signup';
@@ -15,7 +14,6 @@ import UserContext from '@/contexts/UserContext';
 
 export default function Home() {
   const pathname = usePathname();
-  const router = useRouter();
   const [details, setDetails] = useState<DescriptionResumeInfo[]>([]);
   const userContext = useContext(UserContext);
 
@@ -36,15 +34,22 @@ export default function Home() {
         getDetails();
     }, [user]);
 
+    const routeComponentMap: { [key: string]: JSX.Element } = {
+      "/": <HomeResume />,
+      "/keyword-generator": <KeywordGenerator />,
+      "/compare-job-resume": <CompareJobResume />,
+      "/dashboard-resume": <DashboardResume results={details} />,
+      "/summary-job-resume": <SummaryJobResume />,
+      "/signup": <Signup />
+    };
+
+    const currentComponent = routeComponentMap[pathname] || (
+      <div>Page not found (404)</div>
+    );
+
   return (
     <div>
-      <NavbarResume />
-      {pathname === "/" && <HomeResume />}
-      {pathname === "/keyword-generator" && <KeywordGenerator />}
-      {pathname === "/compare-job-resume" && <CompareJobResume />}
-      {pathname === "/dashboard-resume" && <DashboardResume results={details}/>}
-      {pathname === "/summary-job-resume" && <SummaryJobResume />}
-      {pathname === "/signup" && <Signup />}
+      {currentComponent}
     </div>
   );
 }
