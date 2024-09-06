@@ -36,9 +36,8 @@ function KeywordGenerator() {
   };
 
   return (
-    <div >
+    <div className='text-center mt-48'>
       <form className="w-full" onSubmit={handleSubmit}>
-        <div>
           <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
             <div className="w-1/2 px-3">
               <Label text='Job description' />
@@ -48,14 +47,13 @@ function KeywordGenerator() {
                 onChange={handleChange}
                 placeholder="Paste the job description"
               />
-              </div>
+            </div>
 
             <div className="w-1/2 px-3">
               <Label text='Generated keywords' />
                 <KeywordDisplay keywords={keywords}/>
             </div>
           </div>
-        </div>
 
 
         <div className="flex justify-center mt-4">

@@ -7,7 +7,6 @@ import { NextUIProvider } from "@nextui-org/react";
 export default function ProfilePage() {
   return (
     <NextUIProvider>
-      <NavbarResume />
       <Profile />
     </NextUIProvider>
   );

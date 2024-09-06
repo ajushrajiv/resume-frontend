@@ -1,0 +1,27 @@
+// app/template.tsx
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import NavbarResume from "@/components/navbar-resume/NavbarResume";
+import { usePathname } from 'next/navigation';
+
+// The `Template` component for page transitions
+export default function Template({ children }: { children: React.ReactNode }) {
+    const pathname = usePathname(); 
+    return (
+    <div>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={pathname}
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {children}
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}

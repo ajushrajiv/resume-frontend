@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState, useContext } from 'react';
-import NavbarResume from "@/components/navbar-resume/NavbarResume";
 import DashboardResume from "@/components/dashboard-resume/DashboardResume";
 import { NextUIProvider } from "@nextui-org/react";
 import { DescriptionResumeInfo } from '@/interfaces/DescriptionResumeInfoProps';
@@ -33,7 +32,6 @@ export default function DashboardPage() {
 
   return (
     <NextUIProvider>
-      <NavbarResume />
       <DashboardResume results={details}/>
     </NextUIProvider>
   );
