@@ -35,28 +35,79 @@ function KeywordGenerator() {
     }
   };
 
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(keywords);
+  };
+
+  const downloadKeywords = () => {
+    const element = document.createElement("a");
+    const file = new Blob([keywords], { type: 'text/plain' });
+    element.href = URL.createObjectURL(file);
+    element.download = "keywords.txt";
+    document.body.appendChild(element); 
+    element.click();
+  };
+
+  const clearContent = () => {
+    setFormData({ jobDescription: '' });
+    setKeywords('');
+  };
+
   return (
-    <div className='text-center mt-48'>
-      <form className="w-full" onSubmit={handleSubmit}>
-          <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
-            <div className="w-1/2 px-3">
-              <Label text='Job description' />
-              <TextArea
-                name="jobDescription"
-                value={formData.jobDescription}
-                onChange={handleChange}
-                placeholder="Paste the job description"
-              />
-            </div>
+    <div className='mt-32 flex justify-center'>
+      
+      <form className="w-4/6 " onSubmit={handleSubmit}>
+        <div>
+          <h4 className='text-custom-blue font-glegoo font-bold text-4xl leading-7'>
+            Keyword extraction
+          </h4>
+          <p className='text-custom-blue pt-4 text-base'>
+            Provide text, such as a job description or an article. 
+            The tool analyses the text to find the most relevant words.
+            It gives you a list of these important words as an output.
+          </p>
+        </div>
+        {keywords && (
+          <div className="pt-16 pb-8">
+            <Label text='Generated keywords' />
+            <KeywordDisplay keywords={keywords}/>
+            <div className='pt-2 flex justify-end gap-2'>
+              <Button 
+                onClick={copyToClipboard} 
+                className="bg-blue-100 text-custom-blue rounded text-center px-6 py-1"
+              >
+                Copy Keywords
+              </Button>
 
-            <div className="w-1/2 px-3">
-              <Label text='Generated keywords' />
-                <KeywordDisplay keywords={keywords}/>
+              <Button 
+                onClick={downloadKeywords} 
+                className="bg-green-100 text-custom-blue rounded text-center px-6 py-1"
+              >
+                Download Keywords
+              </Button>
+
+              <Button 
+                onClick={clearContent} 
+                className="bg-red-100 text-custom-blue rounded text-center px-6 py-1"
+              >
+                Clear
+              </Button>
             </div>
+            
           </div>
+        )}
 
+        <div className="pt-16">
+          <Label text='Job description' />
+          <TextArea
+            name="jobDescription"
+            value={formData.jobDescription}
+            onChange={handleChange}
+            placeholder="Paste the job description"
+          />
+        </div>
 
-        <div className="flex justify-center mt-4">
+        <div className="mt-4 flex justify-center">
           <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
               <span>Generate keywords </span>
           </Button>  

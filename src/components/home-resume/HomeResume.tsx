@@ -11,7 +11,7 @@ import DescriptionCard from '../reusable-components/DescriptionCard';
 function HomeResume() {
   return (
     <div>
-      <div className='text-center mt-48'>
+      <div className='text-center mt-32'>
 
         <h1 className='inline text-custom-blue font-glegoo text-5xl font-bold leading-10'>
           <div className='inline text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-to-background pr-3'>

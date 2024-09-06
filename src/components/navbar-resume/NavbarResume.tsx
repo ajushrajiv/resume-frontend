@@ -53,7 +53,7 @@ const NavbarResume = React.memo(() => {
         <div className="fixed bg-white w-full z-20 top-0 start-0 border-gray-50">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
-                    <span className="self-center text-2xl font-glegoo font-semibold whitespace-nowrap text-custom-blue ">
+                    <span className="self-center text-xl font-glegoo font-semibold whitespace-nowrap text-custom-blue ">
                         MatchMyResume
                     </span>
                 </Link>
