@@ -62,33 +62,33 @@ function KeywordGenerator() {
             Keyword extraction
           </h4>
           <p className='text-custom-blue pt-4 text-base'>
-            Provide text, such as a job description or an article. 
+            Paste text, such as a job description or an article. 
             The tool analyses the text to find the most relevant words.
             It gives you a list of these important words as an output.
           </p>
         </div>
         {keywords && (
-          <div className="pt-16 pb-8">
+          <div className="pt-12 pb-8">
             <Label text='Generated keywords' />
             <KeywordDisplay keywords={keywords}/>
             <div className='pt-2 flex justify-end gap-2'>
               <Button 
                 onClick={copyToClipboard} 
-                className="bg-blue-100 text-custom-blue rounded text-center px-6 py-1"
+                className="bg-blue-200 text-blue-800 rounded text-center px-6 py-1"
               >
                 Copy Keywords
               </Button>
 
               <Button 
                 onClick={downloadKeywords} 
-                className="bg-green-100 text-custom-blue rounded text-center px-6 py-1"
+                className="bg-green-200 text-green-800 rounded text-center px-6 py-1"
               >
                 Download Keywords
               </Button>
 
               <Button 
                 onClick={clearContent} 
-                className="bg-red-100 text-custom-blue rounded text-center px-6 py-1"
+                className="bg-red-200 text-red-800 rounded text-center px-6 py-1"
               >
                 Clear
               </Button>
