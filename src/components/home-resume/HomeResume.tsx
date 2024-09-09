@@ -44,7 +44,7 @@ function HomeResume() {
             width={900} 
             height={500} 
             quality={80}
-            className="rounded-lg shadow-lg border border-green-500" 
+            className="rounded-lg shadow-lg border border-r-to-background" 
           />
         </div>
 

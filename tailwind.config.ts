@@ -18,7 +18,7 @@ const config: Config = {
       },
       colors: {
         'custom-blue': 'rgb(27, 26, 85)',
-        'icon-color':'rgb(153, 163, 167)',
+        'icon-color':'rgb(151,219,174)',
         'text-blue':'rgb(83, 92, 145)',
         'text-foreground':'rgb(155, 236, 0)',//green
         'button-blue':'rgb(146, 144, 195)',
@@ -27,7 +27,7 @@ const config: Config = {
         'to-navbar':'rgb(234, 253, 252)',
         'to-background':'rgb(160, 228, 255)',
         'from-background':'rgb(160, 199, 255)',
-        
+        'highlight-match':'rgb(201, 233, 203)'
       },
     },
   },
