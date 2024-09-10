@@ -232,45 +232,49 @@ function CompareJobResume() {
                 </a>
               </li>
             </ul>
-
-            <div className="text-center sm:text-left mb-4 sm:mb-0">
-              
-              <div className="relative w-20 h-20">
-                <svg className="absolute top-0 left-0 w-full h-full transform rotate-[-90deg]" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                  <circle 
-                    className="text-gray-200 " 
-                    cx="18" 
-                    cy="18" 
-                    r="15.9155" 
-                    stroke-width="4" 
-                    stroke="#bfbdbd" 
-                    fill="none"
-                  >
-                  </circle>
-
-                  <circle 
-                    className="text-blue-600" 
-                    cx="18" 
-                    cy="18" 
-                    r="15.9155" 
-                    stroke-width="4" 
-                    stroke={
-                      comparisonResult.matchPercentage < 30 
-                        ? "#f472b6" 
-                        : comparisonResult.matchPercentage < 70 
-                        ? "#facc15" 
-                        : "#22c55e" 
-                    } 
-                    stroke-dasharray={`${comparisonResult.matchPercentage} ${100 - comparisonResult.matchPercentage}`} 
-                    stroke-linecap="round" 
-                    fill="none">
-                  </circle>
-                </svg>
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-gray-600 font-medium text-lg">
-                  {comparisonResult.matchPercentage}%
-                </div>
+            <div className='border border-gray-300 rounded-lg'>
+              <div className='text-black text-sm bg-gray-200 mb-1 pl-1 pr-1'>
+                Match %
               </div>
+              <div className="text-center sm:text-left mb-4 sm:mb-0">
+                
+                <div className="relative w-14 h-14 mb-1 ml-2">
+                  <svg className="absolute top-0 left-0 w-full h-full transform rotate-[-90deg]" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                    <circle 
+                      className="text-gray-200 " 
+                      cx="18" 
+                      cy="18" 
+                      r="15.9155" 
+                      stroke-width="4" 
+                      stroke="#bfbdbd" 
+                      fill="none"
+                    >
+                    </circle>
 
+                    <circle 
+                      className="text-blue-600" 
+                      cx="18" 
+                      cy="18" 
+                      r="15.9155" 
+                      stroke-width="4" 
+                      stroke={
+                        comparisonResult.matchPercentage < 30 
+                          ? "#f472b6" 
+                          : comparisonResult.matchPercentage < 70 
+                          ? "#facc15" 
+                          : "#22c55e" 
+                      } 
+                      stroke-dasharray={`${comparisonResult.matchPercentage} ${100 - comparisonResult.matchPercentage}`} 
+                      stroke-linecap="round" 
+                      fill="none">
+                    </circle>
+                  </svg>
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-gray-600 font-medium text-lg">
+                    {comparisonResult.matchPercentage}
+                  </div>
+                </div>
+
+              </div>
             </div>
           </div>
 
