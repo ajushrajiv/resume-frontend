@@ -60,7 +60,7 @@ const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
     };
 
     return(
-    <div className='pt-16' >  
+    <div className='m-24' >  
         <div className='flex justify-between'>
             <form className="w-2/6">   
                 <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>

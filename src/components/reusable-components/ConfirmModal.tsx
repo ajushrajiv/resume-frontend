@@ -3,14 +3,14 @@
 import { ConfirmModalProps } from '@/interfaces/ConfirmModalProps';
 import React from 'react';
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm }) => {
+const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm, confirmText, confirmDescription }) => {
   if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-white p-6 rounded-lg shadow-lg">
-        <h2 className="text-lg font-bold mb-4">Confirm Navigation</h2>
-        <p className="mb-4">Do you want to proceed to the comparison page?</p>
+        <h2 className="text-lg font-bold mb-4">{confirmText}</h2>
+        <p className="mb-4">{confirmDescription}</p>
         <div className="flex justify-end space-x-4">
           <button
             className="bg-gray-300 px-4 py-2 rounded"
