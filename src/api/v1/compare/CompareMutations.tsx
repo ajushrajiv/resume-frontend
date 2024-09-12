@@ -2,9 +2,9 @@ import api from "../../config/api";
 
 async function fetchComparison(jobDescription: string, resume:string,companyName: string, jobTitle: string, userId:number){
     const result = await api.post("compare/resumecompare", {jobDescription, resume, companyName, jobTitle, userId})
-    console.log("Result from fetch", result.data)
-    const { matchPercentage, matchingWords, nonMatchingWords } = result.data;
-    return { matchPercentage, matchingWords, nonMatchingWords };
+    console.log("Result from fetch......", result.data)
+    const { matchPercentage, matchingWords, nonMatchingWords, hitCount } = result.data;
+    return { matchPercentage, matchingWords, nonMatchingWords, hitCount };
 }
 
 export default fetchComparison ;

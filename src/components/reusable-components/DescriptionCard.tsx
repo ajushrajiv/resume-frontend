@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image';
 
 const DescriptionCard: React.FC<DescriptionCardProps> = ({ title, description, buttonText, imageSrc, alt, href, highlightedWord }) => {
@@ -28,6 +30,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({ title, description, b
           height={700} 
           quality={50}
           className="rounded-lg shadow-lg" 
+          priority
         />
       </div>
     </div>

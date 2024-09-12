@@ -11,6 +11,7 @@ import Label from '../reusable-components/Label';
 import UploadButton from '../reusable-components/UploadButton';
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
+import { handleFileChange } from '@/utils/FileHandler';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
@@ -68,76 +69,6 @@ function CompareJobResume() {
   };
 
   const [activeTab, setActiveTab] = useState<'resume' | 'jobDescription'>('resume');
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    console.log("file type",file?.type)
-
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = async(event) => {
-
-      if (file.type === 'application/pdf') {
-        try{
-          const pdfData = new Uint8Array(event.target?.result as ArrayBuffer);
-
-          const pdf = await pdfjsLib.getDocument({ data: pdfData }).promise;
-
-          let textContent = '';
-
-          for (let i = 0; i < pdf.numPages; i++) {
-            const page = await pdf.getPage(i + 1);
-            const textContentPage = await page.getTextContent();
-
-            const pageText = textContentPage.items
-            .filter((item: any) => typeof item.str === 'string')
-            .map((item: any) => item.str)
-            .join(' ');
-
-            textContent += pageText + '\n';
-          }
-
-          console.log("Text content", textContent)
-          
-          setFormData((prevData) => ({
-            ...prevData,
-            resume: textContent
-          }));
-        }catch (error) {
-          console.error('Error extracting text from PDF:', error);
-        }
-      } else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document') {
-        try {
-          const arrayBuffer = event.target?.result as ArrayBuffer;
-          const { value: textContent } = await mammoth.extractRawText({ arrayBuffer });
-
-          console.log("Text content", textContent);
-          setFormData((prevData) => ({
-            ...prevData,
-            resume: textContent
-          }));
-        } catch (error) {
-          console.error('Error extracting text from DOCX:', error);
-        }
-      } 
-      else {
-        const textData = event.target?.result as string;
-        setFormData((prevData) => ({
-          ...prevData,
-          resume: textData
-          }));
-        }
-    };
-
-    if (file.type === 'application/pdf') {
-      reader.readAsArrayBuffer(file); 
-    } else if (file.type === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || file.type === 'application/msword') {
-      reader.readAsArrayBuffer(file);
-    } else {
-      reader.readAsText(file); 
-    }   
-   }
-  };
 
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -218,7 +149,7 @@ function CompareJobResume() {
                     className={`inline-block w-full h-full p-2 ${activeTab === 'resume' ? 'text-white bg-green-400' : 'text-gray-700 bg-gray-100'} rounded-full active focus:outline-none`} 
                     onClick={() => setActiveTab('resume')}
                   >
-                    Alignment
+                    Matches
                   </a>
               </li>
 
@@ -279,33 +210,33 @@ function CompareJobResume() {
           </div>
 
           <div className="w-full p-4 border border-gray-300 rounded-lg mt-4 bg-white">
-              {activeTab === 'resume' && (
-                <div className="w-full text-left">
-                  <h4 className="text-md font-light text-blue-400 mb-4">
-                    Highlights the key words and phrases in your resume that align with the job description.               
-                  </h4>
-                  <div 
-                    className="w-full bg-white p-4 rounded bg-gray-50 text-gray-500 text-left" 
-                    dangerouslySetInnerHTML={{ __html: highlightMatchingWords(formData.resume, comparisonResult.matchingWords) }}
-                  />
-                </div>
-              )}
+            {activeTab === 'resume' && (
+              <div className="w-full text-left">
+                <h4 className="text-md font-light text-blue-400 mb-4">
+                  Highlights the key words and phrases in your resume that align with the job description.               
+                </h4>
+                <div 
+                  className="w-full bg-white p-4 rounded bg-gray-50 text-gray-500 text-left" 
+                  dangerouslySetInnerHTML={{ __html: highlightMatchingWords(formData.resume, comparisonResult.matchingWords) }}
+                />
+              </div>
+            )}
 
-              {activeTab === 'jobDescription' && (
-                <div className="w-full text-left">
-                  <h4 className="text-md font-light text-blue-400 mb-4">
-                      Shows words to consider including in your resume to better meet the job requirements and increase relevance.   
-                  </h4>          
-                  <div 
-                    className="w-full bg-white p-4 rounded bg-gray-50 text-gray-500 text-left" 
-                    dangerouslySetInnerHTML={{ __html: highlightNonMatchingWords(formData.jobDescription, comparisonResult.nonMatchingWords) }}
-                  />
-                </div>
-              )}
-            </div>
-          </div>  
-        </div>               
-      )}
+            {activeTab === 'jobDescription' && (
+              <div className="w-full text-left">
+                <h4 className="text-md font-light text-blue-400 mb-4">
+                    Shows words to consider including in your resume to better meet the job requirements and increase relevance.   
+                </h4>          
+                <div 
+                  className="w-full bg-white p-4 rounded bg-gray-50 text-gray-500 text-left" 
+                  dangerouslySetInnerHTML={{ __html: highlightNonMatchingWords(formData.jobDescription, comparisonResult.nonMatchingWords) }}
+                />
+              </div>
+            )}
+          </div>
+        </div>  
+      </div>               
+    )}
 
       <div>
         <div className=" px-3 mb-6 mt-24 md:mt-12 md:mb-0 flex">
@@ -348,7 +279,7 @@ function CompareJobResume() {
               <input 
                 type="file" 
                 accept=".txt,.pdf,.doc,.docx" 
-                onChange={handleFileChange} 
+                onChange={handleFileChange(setFormData)} 
                 className="hidden" 
                 id="fileInput"
               />

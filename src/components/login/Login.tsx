@@ -60,42 +60,63 @@ function Login() {
     };
       
   return (
-    <form className="w-full max-w-lg" onSubmit={handleSubmit}>
-      <div className="flex flex-wrap -mx-3 mb-6">
+    <div>
+      <div className="flex justify-center min-h-32 ">
+        <form className="bg-blue-50 w-full max-w-lg mt-16 p-4 rounded-lg border border-gray-300" onSubmit={handleSubmit}>
+          <div>
+            <div className='w-full md:mb-0 text-2xl text-custom-blue ml-2'>
+              <h4>Sign in</h4>
+            </div>
+
+            <div className="w-full px-3 mt-8 mb-6 md:mb-0">
+                <FormLabelInput
+                  text="Email"
+                  placeholder="Enter your email"
+                  inputType="email"
+                  inputId="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+            </div>
+            <div className="w-full px-3 mb-6 md:mb-0">
+              <FormLabelInput
+                text="Password"
+                placeholder="Enter password"
+                inputType="password"
+                inputId="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+            </div>
+            
+          </div>
+          <div className="flex justify-center mt-4">
+              <ResumeButton text="Sign in" />
+          </div>
+
+        </form>
+      </div>
       
-      <div className="w-full px-3 mb-6 md:mb-0">
-          <FormLabelInput
-            text="Email"
-            placeholder="Enter your email"
-            inputType="email"
-            inputId="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
+      <div className="relative mt-12 flex justify-center items-center">
+        <div className="w-1/6 border-t border-gray-300"></div>
+        <div className="relative flex justify-center">
+          <span className="bg-white px-2 text-gray-500 font-light">
+            New to Match My Resume
+          </span>
         </div>
-        <div className="w-full px-3 mb-6 md:mb-0">
-          <FormLabelInput
-            text="Password"
-            placeholder="Enter password"
-            inputType="password"
-            inputId="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-        
-      </div>
-      <div className="flex justify-center mt-4">
-          <h4 className='text-custom-blue text-lg'>Click here to signup</h4><Link href="/signup" className='text-custom-blue text-lg underline'>SignUp</Link>
-      </div>
-      <div className="flex justify-center mt-4">
-          <ResumeButton text="Login" />
+        <div className="w-1/6 border-t border-gray-300"></div>
       </div>
 
-    </form>
-
+      <div className="flex justify-center mt-4">
+        <a 
+          href="/signup" 
+          className='text-custom-blue text-lg border border-gray-300 px-4 py-1 rounded-lg shadow-md'>
+            Create your account
+        </a>
+      </div>
+    </div>
   );
 }
 

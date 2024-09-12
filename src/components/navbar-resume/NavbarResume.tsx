@@ -65,7 +65,7 @@ const NavbarResume = React.memo(() => {
                             className="bg-icon-color hover:bg-button-blue text-white font-bold py-2 px-4 rounded-full"
                             onClick={toggleUserMenu}
                         >
-                            {user.username.charAt(0).toUpperCase()}
+                            {user.username ? user.username.charAt(0).toUpperCase() : ''}
                         </button>
 
                         {showMenu && (
@@ -90,8 +90,8 @@ const NavbarResume = React.memo(() => {
                         )}
                     </div>
                 ) : (
-                        <Link href="/signup">
-                            <ResumeButton text="SignUp" />
+                        <Link href="/login">
+                            <ResumeButton text="Sign in" />
                         </Link>
                 )}
 

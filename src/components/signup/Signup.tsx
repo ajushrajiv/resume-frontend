@@ -62,50 +62,66 @@ function Signup() {
       };
       
   return (
-    <form className="w-full max-w-lg" onSubmit={handleSubmit}>
-      <div className="flex flex-wrap -mx-3 mb-6">
-      <div className="w-full px-3 mb-6 md:mb-0">
-          <FormLabelInput
-            text="User Name"
-            placeholder="Enter a username"
-            inputType="text"
-            inputId="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full px-3 mb-6 md:mb-0">
-          <FormLabelInput
-            text="Password"
-            placeholder="Enter password"
-            inputType="password"
-            inputId="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="w-full px-3 mb-6 md:mb-0">
-          <FormLabelInput
-            text="Email"
-            placeholder="Enter your email"
-            inputType="email"
-            inputId="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </div>
-      </div>
-      <div className="flex justify-center mt-4">
-          <h4 className='text-custom-blue text-lg'>Click here to login</h4><Link href="/login" className='text-custom-blue text-lg underline'>Login</Link>
-      </div>
-      <div className="flex justify-center mt-4">
-          <ResumeButton text="Signup" />
-      </div>
-    </form>
+    <div className="flex justify-center min-h-32 ">
 
+      <form className="bg-blue-50 w-full max-w-lg mt-16 p-4 rounded-lg border border-gray-300" onSubmit={handleSubmit}>
+        <div>
+          <div className='w-full md:mb-0 text-2xl text-custom-blue ml-2'>
+            <h4>Create Account</h4>
+          </div>
+
+          <div className="w-full px-3 mt-8 mb-6 md:mb-0">
+            <FormLabelInput
+              text="Email"
+              placeholder="Enter your email"
+              inputType="email"
+              inputId="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="w-full px-3 mb-6 md:mb-0">
+            <FormLabelInput
+              text="Password"
+              placeholder="Enter password"
+              inputType="password"
+              inputId="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="w-full px-3 md:mb-0">
+            <FormLabelInput
+              text="User name"
+              placeholder="Enter a username"
+              inputType="text"
+              inputId="username"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+
+          <div className="w-full px-3 md:mb-0 text-center">
+            <ResumeButton text="Create" />
+          </div>
+          
+        </div>
+
+        <div className="flex justify-center mt-4">
+            <h4 className='text-custom-blue text-sm pt-2'>
+              Already have an account?
+            </h4>
+            <Link href="/login" className='text-blue-700 pl-1 text-lg underline'>
+              Sign in
+            </Link>
+        </div>
+      </form>
+    </div>
   );
 }
 
