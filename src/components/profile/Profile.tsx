@@ -3,7 +3,7 @@
 import React, { useContext, useEffect } from 'react';
 import UserContext from '@/contexts/UserContext';
 import { useRouter } from 'next/navigation';
-import ResumeButton from '../reusable-components/ResumeButton';
+import UserApiCount from '../user-api-count/UserApiCount';
 
 function Profile() {
   const userContext = useContext(UserContext);
@@ -40,11 +40,22 @@ function Profile() {
   return (
     <div>
       {user ? (
-        <div>
-         <div className="flex justify-center mt-4 bg-custom-blue">
-          <p className="flex justify-center mt-4 bg-custom-blue">{user.username}</p>
+         <div className="flex justify-center items-center mt-4 bg-custom-blue">
+          <span className="text-md pb-4 font-light text-white ">
+              <p >{user.username}</p>
+              <p>{user.email}</p>
+          </span>
+          
+          <div className="flex flex-col items-center p-8 m-8 max-w-xs bg-blue-50 border border-gray-200 text-custom-blue rounded-md">
+            <h5 className="text-xl font-medium tracking-tight text-gray-900">
+              Comparison
+            </h5>
+          
+            <div className='text-center pt-4 bg-white w-12 h-16 text-xl font-bold text-center border border-blue-50 rounded-lg shadow-lg'>
+              <UserApiCount/>
+            </div>
+          </div>
          </div>
-        </div>
       ) : (
         <p className="flex justify-center mt-4 bg-custom-blue">Please log in.</p>
       )}
