@@ -17,7 +17,7 @@ import UploadSummaryButton from '../reusable-components/UploadSummaryButton';
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
 
-const SummaryJobResume: React.FC = () => {
+function SummaryJobResume() {
 
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -172,7 +172,7 @@ const SummaryJobResume: React.FC = () => {
   }
 
   return (
-    <div className='m-24'>
+    <div className='m-24 font-glegoo'>
       <div className="p-4 grid grid-cols-1 lg:grid-cols-4 gap-4">
         <div className="lg:col-span-1 col-span-1 mb-3 text-gray-900 border rounded-sm p-4">
 

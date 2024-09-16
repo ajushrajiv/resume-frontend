@@ -2,16 +2,16 @@
 
 import Image from 'next/image';
 
-const DescriptionCard: React.FC<DescriptionCardProps> = ({ title, description, buttonText, imageSrc, alt, href, highlightedWord }) => {
+function DescriptionCard ({ title, description, buttonText, imageSrc, alt, href, highlightedWord }:DescriptionCardProps) {
   
   const highlightedTitle = title.split(' ').map((word, index) => (
     word === highlightedWord ? <span key={index} className='inline text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-blue-500 pr-1'>{word} </span> : `${word} `
   ));
 
   return (
-    <div className="w-4/6 h-6/6 p-6 bg-white border border-gray-200 rounded-lg shadow">
+    <div className="w-4/6 h-6/6 p-6 bg-white border border-gray-200 rounded-lg shadow font-glegoo">
       <a href={href}>
-        <h5 className="mb-2 text-2xl font-glegoo font-bold tracking-tight text-gray-900">{highlightedTitle}</h5>
+        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">{highlightedTitle}</h5>
       </a>
       <p className="mb-3 text-sm text-gray-700">{description}</p>
       <div className='flex justify-end p-4'>

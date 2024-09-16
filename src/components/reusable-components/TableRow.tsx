@@ -4,7 +4,7 @@ import { DescriptionResumeInfo } from '@/interfaces/DescriptionResumeInfoProps';
 import React from 'react';
 import { CiEdit, CiSaveUp2 } from "react-icons/ci";
 
-const TableRow: React.FC<DescriptionResumeInfo & { onStatusChange: (newStatus: string, id:number) => void }> = ({ 
+function TableRow({ 
   id,
   jobDescription, 
   resume, 
@@ -14,7 +14,7 @@ const TableRow: React.FC<DescriptionResumeInfo & { onStatusChange: (newStatus: s
   matchDate,
   onStatusChange,
   onJobDescriptionClick
-}) => {
+}:DescriptionResumeInfo & { onStatusChange: (newStatus: string, id:number) => void }) {
   const formattedDate = matchDate ? new Date(matchDate).toLocaleDateString() : 'N/A';
 
   const truncateText= (text: string, maxLength: number) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Lottie from 'react-lottie';
 
-const FileLottie: React.FC<LottieProps> = ({animationData}) => {
+function FileLottie ({animationData}:LottieProps){
   const defaultOptions = {
     loop: true,
     autoplay: true,

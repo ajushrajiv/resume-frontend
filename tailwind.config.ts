@@ -27,7 +27,8 @@ const config: Config = {
         'to-navbar':'rgb(234, 253, 252)',
         'to-background':'rgb(160, 228, 255)',
         'from-background':'rgb(160, 199, 255)',
-        'highlight-match':'rgb(201, 233, 203)'
+        'highlight-match':'rgb(201, 233, 203)',
+        'bento-green':'rgb(185,204,149)',
       },
     },
   },

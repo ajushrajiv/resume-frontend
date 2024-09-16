@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 
 
-const ResumeButton: React.FC<ResumeButtonProps> = ({ text }) => {
+function ResumeButton({ text }:ResumeButtonProps) {
   const router = useRouter();
 
   const handleClick = () => {

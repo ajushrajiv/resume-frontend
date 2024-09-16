@@ -10,7 +10,6 @@ import CompareTextArea from '../reusable-components/CompareTextArea';
 import Label from '../reusable-components/Label';
 import UploadButton from '../reusable-components/UploadButton';
 import * as pdfjsLib from 'pdfjs-dist';
-import mammoth from 'mammoth';
 import { handleFileChange } from '@/utils/FileHandler';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
@@ -105,7 +104,7 @@ function CompareJobResume() {
   };
 
   return (
-  <div className='mt-32 flex justify-center'>
+  <div className='mt-32 flex justify-center font-glegoo'>
     <form className="w-4/6" onSubmit={handleSubmit}>
       <div>
         <h4 className='text-custom-blue font-glegoo font-bold text-4xl leading-7'>

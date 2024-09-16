@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const FormLabelInput: React.FC<FormLabelInputProps> = ({ text, placeholder, inputId, inputType, name,value, onChange }) => {
+function FormLabelInput({ text, placeholder, inputId, inputType, name,value, onChange }:FormLabelInputProps) {
   return (   
     <div> 
         <label htmlFor={inputId} className="text-sm font-medium text-gray-900 ">

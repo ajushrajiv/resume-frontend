@@ -2,41 +2,41 @@
 
 import React from 'react';
 import Image from 'next/image';
-import fileanimation from "../../../public/fileanimation.json"
-import compareanimation from "../../../public/compareanimation.json"
-import dashboardanimation from "../../../public/dashboardanimation.json"
-import CardWithAnimation from '../reusable-components/CardWithAnimation';
 import DescriptionCard from '../reusable-components/DescriptionCard';
 import TotalHitCounter from '../total-hit-counter/TotalHitCounter';
+import UserCountDisplay from '../user-count-display/UserCountDisplay';
+import BentoGrid from '../bento-grid/BentoGrid';
 
 function HomeResume() {
   return (
     <div>
-      <div className='text-center mt-32'>
+      <div className='font-glegoo mt-32'>
 
-        <h1 className='inline text-custom-blue font-glegoo text-5xl font-bold leading-10'>
-          <div className='inline text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-to-background pr-3'>
-            Analyze
+       <div className='text-center'>
+          <h1 className='inline text-custom-blue text-5xl font-bold leading-10'>
+            <div className='inline text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-to-background pr-3'>
+              Analyze
+            </div>
+            and improve your 
+            <div className='inline text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-to-background p-3'>
+              resume
+            </div>
+            with ease
+          </h1>
+
+          <p className='text-custom-blue mt-4'>
+            Effortlessly match job descriptions with your resume. Get instant keyword analysis,<br></br> matching percentages, and a detailed dashboard of all relevant information
+          </p>
+
+          <div className='m-12'>
+            <a href='/compare-job-resume' className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-custom-blue rounded-lg hover:bg-button-blue focus:outline-none custom dark:hover:bg-button-blue ">
+              Compare 
+              <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+              </svg>
+            </a>
           </div>
-          and improve your 
-          <div className='inline text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-to-background p-3'>
-            resume
-          </div>
-          with ease
-        </h1>
-
-        <p className='text-custom-blue mt-4'>
-          Effortlessly match job descriptions with your resume. Get instant keyword analysis,<br></br> matching percentages, and a detailed dashboard of all relevant information
-        </p>
-
-        <div className='m-12'>
-          <a href='/compare-job-resume' className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-custom-blue rounded-lg hover:bg-button-blue focus:outline-none custom dark:hover:bg-button-blue ">
-            Compare 
-            <svg className="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-              <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-          </a>
-        </div>
+       </div>
 
         <div className="flex justify-center items-center pt-20">
           <Image 
@@ -49,16 +49,8 @@ function HomeResume() {
           />
         </div>
 
-        <div className='flex flex-row justify-center gap-4 pt-16 pb-16'> 
-          <div className='bg-blue-50'>
-            <CardWithAnimation animationData={fileanimation} href="/keyword-generator" text="Extract Essential Keywords from Job Descriptions" />
-          </div>
-          <div className='bg-gray-50'>
-            <CardWithAnimation animationData={compareanimation} href="/compare-job-resume" text="Compare Your Resume with Job Descriptions" />
-          </div>
-          <div className='bg-green-50'>
-            <CardWithAnimation animationData={dashboardanimation} href="/dashboard-resume" text="Track Your Job Search Progress and Organize Resumes" />
-          </div>
+        <div className='flex justify-center items-center m-40'>
+          <BentoGrid />
         </div>
       </div>
 
@@ -98,8 +90,8 @@ function HomeResume() {
           </div>  
       </div>
 
-      <div className='flex justify-center'>
-        <div className="flex flex-col items-center p-8 m-8 max-w-xs bg-blue-50 border border-gray-200 text-custom-blue rounded-md">
+      <div className='font-glegoo flex justify-center'>
+        <div className="flex flex-col items-center p-8 m-8 w-1/6 bg-blue-50 border border-gray-200 text-custom-blue rounded-md">
           <h5 className="text-xl font-medium tracking-tight text-gray-900">
             Statistics
           </h5>
@@ -110,8 +102,19 @@ function HomeResume() {
             <TotalHitCounter/>
           </div>
         </div>
+
+        <div className="flex flex-col items-center p-8 m-8 w-1/6 bg-blue-50 border border-gray-200 text-custom-blue rounded-md">
+          <h5 className="text-xl font-medium tracking-tight text-gray-900">
+            Users
+          </h5>
+          <span className="text-md pb-4 font-light text-gray-900 ">
+            active users
+          </span>
+          <div className='text-center pt-4 bg-white w-12 h-16 text-xl font-bold text-center border border-blue-50 rounded-lg shadow-lg'>
+            <UserCountDisplay/>
+          </div>
+        </div>
       </div>
-      
     </div>
   );
 }
