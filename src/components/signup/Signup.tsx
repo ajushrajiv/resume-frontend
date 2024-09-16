@@ -62,7 +62,7 @@ function Signup() {
       };
       
   return (
-    <div className="flex justify-center min-h-32 ">
+    <div className="flex justify-center min-h-32 font-glegoo">
 
       <form className="bg-blue-50 w-full max-w-lg mt-16 p-4 rounded-lg border border-gray-300" onSubmit={handleSubmit}>
         <div>

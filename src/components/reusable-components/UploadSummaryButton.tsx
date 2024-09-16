@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const UploadSummaryButton: React.FC<ResumeButtonProps> = ({ text }) => {
+function UploadSummaryButton ({ text }:ResumeButtonProps){
 
   return(
 

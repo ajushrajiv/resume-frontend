@@ -8,7 +8,7 @@ import Table from '../reusable-components/Table';
 import { DashboardContentProps } from '@/interfaces/DashboardContentProps';
 import fetchupdatestatus from '@/api/v1/dashboard/DashboardMutations';
 
-const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
+function DashboardResume({results}:DashboardContentProps){
 
     const [jobStatus, setJobStatus] = useState<{ [id: number]: string }>({});
     const [searchQuery, setSearchQuery] = useState<string>('');
@@ -60,7 +60,7 @@ const DashboardResume: React.FC<DashboardContentProps> = ({results}) => {
     };
 
     return(
-    <div className='m-24' >  
+    <div className='m-24 font-glegoo' >  
         <div className='flex justify-between'>
             <form className="w-2/6">   
                 <label className="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>

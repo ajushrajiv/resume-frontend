@@ -1,0 +1,3 @@
+interface DashboardAnimationProps {
+    animationData: object;
+  }

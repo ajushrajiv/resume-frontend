@@ -38,7 +38,7 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div className='font-glegoo'>
       {user ? (
          <div className="flex justify-center items-center mt-4 bg-custom-blue">
           <span className="text-md pb-4 font-light text-white ">

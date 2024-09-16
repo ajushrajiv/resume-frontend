@@ -6,7 +6,7 @@ import ResumeButton from "../reusable-components/ResumeButton";
 import UserContext from "@/contexts/UserContext";
 import { FiLogOut } from "react-icons/fi";
 
-const NavbarResume = React.memo(() => {
+function NavbarResume(){
 
     const [isOpen, setIsOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -50,7 +50,7 @@ const NavbarResume = React.memo(() => {
     }, [showMenu]);
 
     return(
-        <div className="fixed bg-white w-full z-20 top-0 start-0 border-gray-50">
+        <div className="fixed font-glegoo bg-white w-full z-20 top-0 start-0 border-gray-50">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <Link href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
                     <span className="self-center text-xl font-glegoo font-semibold whitespace-nowrap text-custom-blue tracking-tighter">
@@ -144,7 +144,7 @@ const NavbarResume = React.memo(() => {
             </div>
         </div>
     )
-})
+}
 
 NavbarResume.displayName = "NavbarResume";
-export default NavbarResume;
+export default React.memo(NavbarResume);

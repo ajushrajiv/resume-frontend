@@ -3,7 +3,7 @@
 import { ConfirmModalProps } from '@/interfaces/ConfirmModalProps';
 import React from 'react';
 
-const ConfirmModal: React.FC<ConfirmModalProps> = ({ isOpen, onClose, onConfirm, confirmText, confirmDescription }) => {
+function ConfirmModal({ isOpen, onClose, onConfirm, confirmText, confirmDescription }:ConfirmModalProps) {
   if (!isOpen) return null;
 
   return (

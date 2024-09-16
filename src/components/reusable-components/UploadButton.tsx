@@ -3,7 +3,7 @@
 import React from 'react';
 import { GoUpload } from "react-icons/go";
 
-const UploadButton: React.FC<ResumeButtonProps> = ({ text }) => {
+function UploadButton({ text }:ResumeButtonProps){
 
   return(
 

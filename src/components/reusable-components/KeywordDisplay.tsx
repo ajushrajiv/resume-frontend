@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const KeywordDisplay: React.FC<KeywordDisplayProps> = ({ keywords }) => {
+function KeywordDisplay({ keywords }:KeywordDisplayProps) {
 
   const keywordArray = keywords.split(' ');
 

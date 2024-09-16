@@ -2,7 +2,7 @@ import userRequestCount from "@/api/v1/signup-login/user-queries/UserRequestCoun
 import UserContext from "@/contexts/UserContext";
 import React, { useEffect, useState, useContext } from "react";
 
-const UserApiCount: React.FC = ()  => {
+function UserApiCount() {
   const [userQueryCount, setUserQueryCount] = useState<number | null>(null);  
   const [loading, setLoading] = useState(true);      
   const userContext = useContext(UserContext);
@@ -36,7 +36,7 @@ const UserApiCount: React.FC = ()  => {
   }
 
   return (
-    <div>
+    <div className="font-glegoo">
       {userQueryCount !== null ? (
         <p>{userQueryCount}</p>
       ) : (

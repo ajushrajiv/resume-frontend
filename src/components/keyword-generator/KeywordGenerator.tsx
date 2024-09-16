@@ -54,7 +54,7 @@ function KeywordGenerator() {
   };
 
   return (
-    <div className='mt-32 flex justify-center'>
+    <div className='mt-32 font-glegoo flex justify-center'>
       
       <form className="w-4/6 " onSubmit={handleSubmit}>
         <div>

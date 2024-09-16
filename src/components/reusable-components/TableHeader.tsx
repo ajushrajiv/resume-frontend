@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-const TableHeader = () => {
+function TableHeader() {
   return (
     <thead className="text-xs text-gray-700 uppercase bg-custom-blue dark:bg-custom-blue dark:text-white">
         <tr>

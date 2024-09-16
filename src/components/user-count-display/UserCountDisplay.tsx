@@ -1,7 +1,7 @@
 import countUser from "@/api/v1/signup-login/auth-mutations/CountUser";
 import React, { useEffect, useState } from "react";
 
-const UserCountDisplay = () => {
+function UserCountDisplay() {
   const [userCount, setUserCount] = useState(null);  
   const [loading, setLoading] = useState(true);      
 

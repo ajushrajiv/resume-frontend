@@ -1,7 +1,7 @@
 // InputComponent.js
 import React from 'react';
 
-const InputComponent: React.FC<InputComponentProps> = ({ name, value, onChange, placeholder }) => {
+function InputComponent({ name, value, onChange, placeholder }:InputComponentProps) {
     return (
     <div className="w-full">
       <input

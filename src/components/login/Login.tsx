@@ -3,7 +3,6 @@
 import React, { useState, useContext } from 'react';
 import ResumeButton from '../reusable-components/ResumeButton';
 import UserContext from '@/contexts/UserContext';
-import Link from 'next/link';
 import FormLabelInput from '../reusable-components/FormLabelInput';
 
 function Login() {
@@ -61,7 +60,7 @@ function Login() {
       
   return (
     <div>
-      <div className="flex justify-center min-h-32 ">
+      <div className="flex justify-center min-h-32 font-glegoo">
         <form className="bg-blue-50 w-full max-w-lg mt-16 p-4 rounded-lg border border-gray-300" onSubmit={handleSubmit}>
           <div>
             <div className='w-full md:mb-0 text-2xl text-custom-blue ml-2'>
@@ -99,7 +98,7 @@ function Login() {
         </form>
       </div>
       
-      <div className="relative mt-12 flex justify-center items-center">
+      <div className="relative mt-12 flex justify-center items-center font-glegoo">
         <div className="w-1/6 border-t border-gray-300"></div>
         <div className="relative flex justify-center">
           <span className="bg-white px-2 text-gray-500 font-light">
@@ -109,7 +108,7 @@ function Login() {
         <div className="w-1/6 border-t border-gray-300"></div>
       </div>
 
-      <div className="flex justify-center mt-4">
+      <div className="flex justify-center mt-4 font-glegoo">
         <a 
           href="/signup" 
           className='text-custom-blue text-lg border border-gray-300 px-4 py-1 rounded-lg shadow-md'>

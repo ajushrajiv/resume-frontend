@@ -7,7 +7,7 @@ const websocketUrl = process.env.NEXT_PUBLIC_WEBSOCKET_URL || '';
 
 const socket = new WebSocketClient(websocketUrl);
 
-const TotalHitCounter: React.FC = () => {
+function TotalHitCounter(){
     const [totalHits, setTotalHits] = useState<number | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -28,7 +28,7 @@ const TotalHitCounter: React.FC = () => {
     }, []);
 
     return (
-        <div>
+        <div className='font-glegoo'>
             {loading ? '...' : `${totalHits}`}
         </div>
     );
