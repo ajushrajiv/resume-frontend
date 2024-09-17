@@ -17,17 +17,19 @@ export default function DashboardPage() {
 
   const { user } = userContext;
 
-    useEffect(() => {
-        async function getDetails() {
-          if (user) {
-            const response = await fetchdetailsbyuserid(user.id);
-            const data = response.data
-            setDetails(data);
-           }
-          }
-
-        getDetails();
-    }, [user]);
+  useEffect(() => {
+    async function getDetails() {
+      if (user) {
+        try {
+          const filteredData = await fetchdetailsbyuserid(user.id);
+          setDetails(filteredData); 
+        } catch (error) {
+          console.error("Error fetching user details:", error);
+        }
+      }
+    }
+    getDetails();
+}, [user]);
 
 
   return (

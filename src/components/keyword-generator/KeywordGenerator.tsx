@@ -103,12 +103,15 @@ function KeywordGenerator() {
             name="jobDescription"
             value={formData.jobDescription}
             onChange={handleChange}
-            placeholder="Paste the job description"
+            placeholder=""
           />
         </div>
 
         <div className="mt-4 flex justify-center">
-          <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
+          <Button type="submit" 
+                  className={`bg-custom-blue text-white rounded text-center px-6 py-1 ${formData.jobDescription.trim().length < 10 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  disabled={formData.jobDescription.trim().length < 10}
+          >
               <span>Generate keywords </span>
           </Button>  
         </div>

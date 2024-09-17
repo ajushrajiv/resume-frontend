@@ -12,6 +12,7 @@ function TableRow({
   jobTitle, 
   jobStatus, 
   matchDate,
+  isDeleted,
   onStatusChange,
   onJobDescriptionClick
 }:DescriptionResumeInfo & { onStatusChange: (newStatus: string, id:number) => void }) {

@@ -49,11 +49,13 @@ function SummaryJobResume() {
           const data = response.data;
           console.log('Job details:', data);
           setJobDetails(data);
-          setEditValues({
-            companyName: data.JobApplicationModel.companyName,
-            jobTitle: data.JobApplicationModel.jobTitle,
-            resume: data.JobApplicationModel.resume
-          });
+          if (data?.JobApplicationModel) {
+            setEditValues({
+              companyName: data.JobApplicationModel.companyName || '',
+              jobTitle: data.JobApplicationModel.jobTitle || '',
+              resume: data.JobApplicationModel.resume || ''
+            });
+          }          
           setLoading(false);
         } catch (error) {
           console.error('Error fetching job details:', error);
@@ -72,6 +74,12 @@ function SummaryJobResume() {
   const handleSave = async (field: keyof typeof editValues) => {
     if (id) {
       try {
+
+        if (!editValues[field].trim()) {
+          console.error(`${field} cannot be empty`);
+          return;
+        }
+
         switch (field) {
           case 'companyName':
             await fetchEditCompanyName(id, editValues.companyName);
@@ -204,8 +212,8 @@ function SummaryJobResume() {
                         ? "#facc15" 
                         : "#22c55e" 
                     } 
-                    stroke-dasharray={`${jobDetails?.matchPercentage} ${100 - (jobDetails?.matchPercentage ?? 0)}`} 
-                    stroke-linecap="round" 
+                    strokeDasharray={`${jobDetails?.matchPercentage} ${100 - (jobDetails?.matchPercentage ?? 0)}`} 
+                    strokeLinecap="round" 
                     fill="none">
                   </circle>
                 </svg>
@@ -243,7 +251,7 @@ function SummaryJobResume() {
               </div>
             ) : (
               <div className="text-base font-light">
-                {jobDetails?.JobApplicationModel.companyName}
+                {jobDetails?.JobApplicationModel.companyName || 'N/A'}
               </div>
             )}
           </div>

@@ -1,6 +1,6 @@
 "use client"
 
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState, useContext } from "react";
 import KeywordGenerator from '@/components/keyword-generator/KeywordGenerator';
 import HomeResume from '@/components/home-resume/HomeResume';
@@ -15,6 +15,7 @@ import UserContext from '@/contexts/UserContext';
 export default function Home() {
   const pathname = usePathname();
   const [details, setDetails] = useState<DescriptionResumeInfo[]>([]);
+  
   const userContext = useContext(UserContext);
 
   if (!userContext) {
@@ -26,9 +27,12 @@ export default function Home() {
     useEffect(() => {
         async function getDetails() {
           if (user) {
-            const response = await fetchdetailsbyuserid(user.id);
-            const data = response.data
-            setDetails(data);
+            try {
+              const filteredData = await fetchdetailsbyuserid(user.id);
+              setDetails(filteredData); 
+            } catch (error) {
+              console.error("Error fetching user details:", error);
+            }
           }
         }
         getDetails();
@@ -47,6 +51,7 @@ export default function Home() {
       <div>Page not found (404)</div>
     );
 
+    
   return (
     <div>
       {currentComponent}
