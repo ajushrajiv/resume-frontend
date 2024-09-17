@@ -11,6 +11,7 @@ import Label from '../reusable-components/Label';
 import UploadButton from '../reusable-components/UploadButton';
 import * as pdfjsLib from 'pdfjs-dist';
 import { handleFileChange } from '@/utils/FileHandler';
+import LoginModal from '../reusable-components/LoginModal';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
@@ -23,6 +24,7 @@ function CompareJobResume() {
   const companyName = searchParams.get('companyName');
   const jobTitle = searchParams.get('jobTitle');
 
+  const [isModalOpen, setModalOpen] = useState(false);
   const [ formData, setFormData ] = useState({
     jobDescription: '',
     resume:'',
@@ -35,6 +37,11 @@ function CompareJobResume() {
     matchingWords: string[];
     nonMatchingWords: string[];
   }>(null);
+
+  const [errors, setErrors] = useState({
+    jobDescription: '',
+    resume: ''
+  });
 
   const userContext = useContext(UserContext);
   if (!userContext) {
@@ -69,8 +76,36 @@ function CompareJobResume() {
 
   const [activeTab, setActiveTab] = useState<'resume' | 'jobDescription'>('resume');
 
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { jobDescription: '', resume: '' };
+
+    if (!formData.jobDescription) {
+      newErrors.jobDescription = 'Job description cannot be empty.';
+      valid = false;
+    }
+
+    if (!formData.resume) {
+      newErrors.resume = 'Resume cannot be empty.';
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!user) {
+      setModalOpen(true);
+      return;
+    }
+
+    if (!validateForm()) {
+      return;
+    }
+
     try{        
       if(user){
         const result = await fetchComparison(
@@ -194,8 +229,8 @@ function CompareJobResume() {
                           ? "#facc15" 
                           : "#22c55e" 
                       } 
-                      stroke-dasharray={`${comparisonResult.matchPercentage} ${100 - comparisonResult.matchPercentage}`} 
-                      stroke-linecap="round" 
+                      strokeDasharray={`${comparisonResult.matchPercentage} ${100 - comparisonResult.matchPercentage}`} 
+                      strokeLinecap="round" 
                       fill="none">
                     </circle>
                   </svg>
@@ -269,6 +304,7 @@ function CompareJobResume() {
               onChange={handleChange}
               placeholder="Paste the job description"
             />
+           {errors.jobDescription && <p className="text-red-500 text-sm mt-1">{errors.jobDescription}</p>}
           </div>
 
           <div className="w-1/2 px-3">
@@ -293,7 +329,7 @@ function CompareJobResume() {
               onChange={handleChange}
               placeholder="upload (.txt or .pdf file) or paste the resume"
             />
-            
+           {errors.resume && <p className="text-red-500 text-sm mt-1">{errors.resume}</p>}
           </div>          
         </div>
       </div>
@@ -302,7 +338,13 @@ function CompareJobResume() {
         <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
             <span>Compare </span>
         </Button>  
+        
       </div>
+      <LoginModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          confirmText="Please login to compare"
+        />
     </form>
     </div>
   );

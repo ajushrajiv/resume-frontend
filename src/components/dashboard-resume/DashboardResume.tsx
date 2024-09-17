@@ -10,6 +10,10 @@ import fetchupdatestatus from '@/api/v1/dashboard/DashboardMutations';
 
 function DashboardResume({results}:DashboardContentProps){
 
+    const safeResults = Array.isArray(results) ? results : [];
+    console.log("DASHBOARD RESUME", safeResults);
+
+
     const [jobStatus, setJobStatus] = useState<{ [id: number]: string }>({});
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(1); 
@@ -122,6 +126,7 @@ function DashboardResume({results}:DashboardContentProps){
                         jobTitle={result.jobTitle}
                         jobStatus={jobStatus[result.id] || result.jobStatus}
                         matchDate={result.matchDate}
+                        isDeleted={result.isDeleted}
                         onStatusChange={ handleStatusUpdate }
                         onJobDescriptionClick={() => handleJobDescriptionClick(result.id)}
                     />
