@@ -5,11 +5,13 @@ import Link from 'next/link';
 import ResumeButton from "../reusable-components/ResumeButton";
 import UserContext from "@/contexts/UserContext";
 import { FiLogOut } from "react-icons/fi";
+import LoginModal from "../reusable-components/LoginModal";
 
 function NavbarResume(){
 
     const [isOpen, setIsOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
+    const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const userContext = useContext(UserContext);
 
     if (!userContext) {
@@ -48,6 +50,14 @@ function NavbarResume(){
             document.removeEventListener('click', handleClickOutside);
         };
     }, [showMenu]);
+
+    const handleDashboardClick = (e: React.MouseEvent) => {
+        if (!user) {
+            e.preventDefault(); 
+            setIsLoginModalOpen(true); 
+            return
+        }
+    };
 
     return(
         <div className="fixed font-glegoo bg-white w-full z-20 top-0 start-0 border-gray-50">
@@ -135,13 +145,18 @@ function NavbarResume(){
                         </li>
                         <li>
                             <Link href="/dashboard-resume" 
-                                  className="block py-2 px-3 text-custom-blue bg-white hover:text-button-blue">
+                                  className="block py-2 px-3 text-custom-blue bg-white hover:text-button-blue" onClick={handleDashboardClick}>
                                     Dashboard
                             </Link>
                         </li>
                     </ul>
                 </div>
             </div>
+            <LoginModal
+                 isOpen={isLoginModalOpen} 
+                 onClose={() => setIsLoginModalOpen(false)} 
+                 confirmText="Please log in to access the dashboard." 
+            />
         </div>
     )
 }

@@ -11,6 +11,7 @@ import Label from '../reusable-components/Label';
 import UploadButton from '../reusable-components/UploadButton';
 import * as pdfjsLib from 'pdfjs-dist';
 import { handleFileChange } from '@/utils/FileHandler';
+import LoginModal from '../reusable-components/LoginModal';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
@@ -23,6 +24,7 @@ function CompareJobResume() {
   const companyName = searchParams.get('companyName');
   const jobTitle = searchParams.get('jobTitle');
 
+  const [isModalOpen, setModalOpen] = useState(false);
   const [ formData, setFormData ] = useState({
     jobDescription: '',
     resume:'',
@@ -94,6 +96,11 @@ function CompareJobResume() {
 
   const handleSubmit = async(e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (!user) {
+      setModalOpen(true);
+      return;
+    }
 
     if (!validateForm()) {
       return;
@@ -331,7 +338,13 @@ function CompareJobResume() {
         <Button type="submit" className="bg-custom-blue text-white rounded text-center px-6 py-1">
             <span>Compare </span>
         </Button>  
+        
       </div>
+      <LoginModal
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          confirmText="Please login to compare"
+        />
     </form>
     </div>
   );
