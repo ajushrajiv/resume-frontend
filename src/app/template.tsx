@@ -3,7 +3,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
-import NavbarResume from "@/components/navbar-resume/NavbarResume";
 import { usePathname } from 'next/navigation';
 
 // The `Template` component for page transitions

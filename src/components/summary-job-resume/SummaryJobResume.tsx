@@ -225,8 +225,9 @@ function SummaryJobResume() {
                         
             <div className="flex flex-col justify-between p-2 leading-normal">
                 <p className="mb-3 font-normal text-sm text-gray-700 ">
-                  Increase percentage by adding relevant keywords from the job description
-                </p>
+                {jobDetails?.matchPercentage && jobDetails.matchPercentage > 80
+                            ? 'Great! Your resume is a good match for this job.'
+                            : 'Increase percentage by adding relevant keywords from the job description'}                </p>
             </div>
           </div>
 
@@ -399,14 +400,19 @@ function SummaryJobResume() {
           Boost Your Resume: Add These Keywords!        
         </h6>
         <div className="mb-4">
-          {jobDetails?.nonMatchingWords?.map((word, index) => (
+        {jobDetails?.nonMatchingWords && jobDetails.nonMatchingWords.length > 0 ? (
+          jobDetails.nonMatchingWords.map((word, index) => (
             <span 
               key={index} 
               className="inline-block bg-white text-black font-light px-2 py-1 rounded-md mr-2 mb-2"
             >
               {word}
             </span>
-          ))}
+          ))
+        ) : (
+          <p className="text-gray-500 text-sm">No keywords to add. Your resume might already align well with the job description!</p>
+        )
+        }
         </div>
       </div>
         
@@ -415,14 +421,18 @@ function SummaryJobResume() {
             Great Match: Your Resume Keywords Align Perfectly
         </h6>
         <div className="mb-4">
-          {jobDetails?.matchingWords?.map((word, index) => (
+        {jobDetails?.matchingWords && jobDetails.matchingWords.length > 0 ? (
+           jobDetails.matchingWords.map((word, index) => (
             <span 
               key={index} 
               className="inline-block bg-white text-black font-light px-2 py-1 rounded-md mr-2 mb-2"
             >
               {word}
             </span>
-          ))}
+          ))
+          ) : (
+            <p className="text-gray-500 text-sm">No matching keywords found in your resume for this job description.</p>
+          )}
         </div>
       
         <ConfirmModal

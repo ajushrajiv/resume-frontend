@@ -10,10 +10,6 @@ import fetchupdatestatus from '@/api/v1/dashboard/DashboardMutations';
 
 function DashboardResume({results}:DashboardContentProps){
 
-    const safeResults = Array.isArray(results) ? results : [];
-    console.log("DASHBOARD RESUME", safeResults);
-
-
     const [jobStatus, setJobStatus] = useState<{ [id: number]: string }>({});
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [currentPage, setCurrentPage] = useState(1); 
@@ -104,35 +100,42 @@ function DashboardResume({results}:DashboardContentProps){
                     Next
                 </button>
             </div>
-
         </div>
 
-        <Table>
-            <caption className="p-5 mt-4 text-lg font-semibold text-left rtl:text-right text-black bg-gray-100 dark:text-black dark:bg-gray-100">
-                Application Tracker Dashboard
-                <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
-                  Monitor and manage your job application process.Stay organized and keep track of your progress at a glance.   
-                </p>
-            </caption>
-            <TableHeader />
-            <tbody>
-                {paginatedResults.map((result, index) => (
-                    <TableRow 
-                        key={index}
-                        id={result.id}
-                        jobDescription={result.jobDescription}
-                        resume={result.resume}
-                        companyName={result.companyName}
-                        jobTitle={result.jobTitle}
-                        jobStatus={jobStatus[result.id] || result.jobStatus}
-                        matchDate={result.matchDate}
-                        isDeleted={result.isDeleted}
-                        onStatusChange={ handleStatusUpdate }
-                        onJobDescriptionClick={() => handleJobDescriptionClick(result.id)}
-                    />
-                ))}
-            </tbody>
-        </Table>
+        {results.length === 0 ? (
+            <div className="flex items-center justify-center mt-16">
+                <div className=" border border-blue-50 w-2/6 text-center mt-10 text-gray-500 text-lg">
+                    No results to display. Please compare job description and resume to add or fetch data.
+                </div>
+            </div>
+        ) : (
+            <Table>
+                <caption className="p-5 mt-4 text-lg font-semibold text-left rtl:text-right text-black bg-gray-100 dark:text-black dark:bg-gray-100">
+                    Application Tracker Dashboard
+                    <p className="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">
+                    Monitor and manage your job application process.Stay organized and keep track of your progress at a glance.   
+                    </p>
+                </caption>
+                <TableHeader />
+                <tbody>
+                    {paginatedResults.map((result, index) => (
+                        <TableRow 
+                            key={index}
+                            id={result.id}
+                            jobDescription={result.jobDescription}
+                            resume={result.resume}
+                            companyName={result.companyName}
+                            jobTitle={result.jobTitle}
+                            jobStatus={jobStatus[result.id] || result.jobStatus}
+                            matchDate={result.matchDate}
+                            isDeleted={result.isDeleted}
+                            onStatusChange={ handleStatusUpdate }
+                            onJobDescriptionClick={() => handleJobDescriptionClick(result.id)}
+                        />
+                    ))}
+                </tbody>
+            </Table>
+        )}
     </div>
     )
 }
