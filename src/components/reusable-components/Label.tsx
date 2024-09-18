@@ -4,7 +4,7 @@ import React from 'react';
 
 function Label({ text }:LabelProps) {
   return (
-    <label className="block tracking-wide text-blue-400 text-base font-medium mb-0">
+    <label className="block tracking-wide text-blue-400 text-base font-bold mb-0">
         {text}
     </label>
   );

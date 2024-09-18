@@ -4,6 +4,7 @@ import "./globals.css";
 import { UserProvider } from "@/contexts/UserContext";
 import NavbarResume from "@/components/navbar-resume/NavbarResume";
 import Template from "./template";
+import Footer from "@/components/footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
               {children}
             </main>
           </Template>
+          <Footer />
         </UserProvider>
       </body>
     </html>

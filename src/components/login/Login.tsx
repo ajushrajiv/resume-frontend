@@ -26,20 +26,22 @@ function Login() {
     
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const { name, value } = e.target;
-      console.log(`Input ${name} changed to: ${value}`);
       setFormData({ ...formData, [name]: value });
     };
     
     const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      console.log('handleSubmit called');
-      console.log('Form data on submit:', formData);
+
+      if (!formData.email || !formData.password) {
+        setErrorMessage('Email and password are required.');
+        return;
+      }
+
       try{
-        console.log('Calling LoginUser');
         const response = await loginUser( formData.email, formData.password);
   
       if (response) {
-        console.log('Form submitted successfully:', response);
+        console.log('Login successful', response);
       } else {
           console.error('No response from dataSignUpUser');
       }
@@ -66,6 +68,12 @@ function Login() {
             <div className='w-full md:mb-0 text-2xl text-custom-blue ml-2'>
               <h4>Sign in</h4>
             </div>
+
+            {errorMessage && (
+              <div className="text-red-500 text-sm mt-2 text-center">
+                {errorMessage}
+              </div>
+            )}
 
             <div className="w-full px-3 mt-8 mb-6 md:mb-0">
                 <FormLabelInput

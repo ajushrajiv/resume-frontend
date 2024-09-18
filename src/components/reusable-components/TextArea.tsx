@@ -10,7 +10,7 @@ function TextArea({ name, value, onChange, placeholder }:TextAreaProps) {
       {!value && !isFocused && (
         <div className="absolute inset-0 z-10 flex items-center justify-center pointer-events-none text-gray-400 text-lg">
           <p className="text-center opacity-60">
-            <span className="italic">Paste job description or any text to extract keywords</span>
+            <span>Paste job description or any text to extract keywords</span>
           </p>
         </div>
       )}

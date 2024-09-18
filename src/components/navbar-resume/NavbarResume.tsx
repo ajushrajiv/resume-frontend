@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useContext } from "react";
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import ResumeButton from "../reusable-components/ResumeButton";
 import UserContext from "@/contexts/UserContext";
 import { FiLogOut } from "react-icons/fi";
@@ -13,6 +14,7 @@ function NavbarResume(){
     const [showMenu, setShowMenu] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const userContext = useContext(UserContext);
+    const router = useRouter();
 
     if (!userContext) {
         throw new Error("UserContext is undefined, make sure NavbarResume is wrapped in a UserProvider");
@@ -22,6 +24,7 @@ function NavbarResume(){
 
     const handleLogout = () => {
         logOutUser();
+        router.push('/')
     };
 
     const toggleMenu = () => {
