@@ -13,6 +13,7 @@ function NavbarResume(){
     const [isOpen, setIsOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+    const [isLoginCompareModalOpen, setIsLoginCompareModalOpen] = useState(false);
     const userContext = useContext(UserContext);
     const router = useRouter();
 
@@ -61,6 +62,15 @@ function NavbarResume(){
             return
         }
     };
+
+    const handleCompareClick = (e: React.MouseEvent) => {
+        if (!user) {
+            e.preventDefault(); 
+            setIsLoginCompareModalOpen(true); 
+            return
+        }
+    };
+
 
     return(
         <div className="fixed font-glegoo bg-white w-full z-20 top-0 start-0 border-gray-50">
@@ -142,7 +152,7 @@ function NavbarResume(){
                         </li>
                         <li>
                             <Link href="/compare-job-resume" 
-                                  className="block py-2 px-3 text-custom-blue bg-white hover:text-button-blue">
+                                  className="block py-2 px-3 text-custom-blue bg-white hover:text-button-blue" onClick={handleCompareClick}>
                                     Compare Job&Resume
                             </Link>
                         </li>
@@ -158,7 +168,12 @@ function NavbarResume(){
             <LoginModal
                  isOpen={isLoginModalOpen} 
                  onClose={() => setIsLoginModalOpen(false)} 
-                 confirmText="Please log in to access the dashboard." 
+                 confirmText="Please log in to access the dashboard" 
+            />
+            <LoginModal
+                 isOpen={isLoginCompareModalOpen} 
+                 onClose={() => setIsLoginCompareModalOpen(false)} 
+                 confirmText="Please log in to compare" 
             />
         </div>
     )
