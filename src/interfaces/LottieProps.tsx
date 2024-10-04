@@ -1,3 +1,0 @@
-interface LottieProps {
-  animationData: object; 
-}
