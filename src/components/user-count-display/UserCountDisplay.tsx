@@ -6,12 +6,14 @@ function UserCountDisplay() {
   const [loading, setLoading] = useState(true);      
 
   useEffect(() => {
+    
     const fetchUserCount = async () => {
       try {
         const data = await countUser();   
         setUserCount(data.count);         
       } catch (error) {
         console.error("Error fetching user count:", error);
+        setUserCount(null);
       } finally {
         setLoading(false);             
       }

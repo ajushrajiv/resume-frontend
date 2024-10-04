@@ -4,8 +4,7 @@ import { AiOutlinePercentage } from "react-icons/ai";
 import { PiHighlighterDuotone } from "react-icons/pi";
 import { IoIosArrowDroprightCircle } from "react-icons/io";
 import { LuTextSelect } from "react-icons/lu";
-import dashboardanimation from "../../../public/dashboardanimation.json"
-import DashboardAnimation from "../reusable-components/DashboardAnimation";
+import { VscPreview } from "react-icons/vsc";
 
 function BentoGrid() {
   return (
@@ -71,7 +70,7 @@ function BentoGrid() {
       </div>
 
       <div className="rounded-lg bg-bento-green col-span-2 px-8 font-glegoo row-span-2">
-        <h6 className="text-white font-light text-2xl p-12">
+        <h6 className="text-white font-light text-2xl p-6">
              Track job application status by entering the company name, job title, and status.
              Edit your resume in the dashboard, then compare it with the job description to find the match percentage.        </h6>
       </div>
@@ -80,8 +79,8 @@ function BentoGrid() {
         <h6 className="text-2xl">
             Track your job search progress and organize resumes
         </h6>
-        <div className="text-8xl absolute right-4 bottom-12 " >
-            <DashboardAnimation animationData={dashboardanimation}/>
+        <div className="text-6xl absolute right-12 bottom-12 " >
+            <VscPreview />
         </div>
         <span className="flex cursor-pointer text-3xl font-bold flex-row mt-44 items-center justify-start">
             Dashboard

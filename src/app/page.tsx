@@ -10,7 +10,7 @@ import { DescriptionResumeInfo } from '@/interfaces/DescriptionResumeInfoProps';
 import SummaryJobResume from '@/components/summary-job-resume/SummaryJobResume';
 import Signup from '@/components/signup/Signup';
 import fetchdetailsbyuserid from '@/api/v1/dashboard/DashboardQueries';
-import UserContext from '@/contexts/UserContext';
+import UserContext, { UserProvider } from '@/contexts/UserContext';
 
 export default function Home() {
   const pathname = usePathname();
@@ -40,6 +40,7 @@ export default function Home() {
 
     const routeComponentMap: { [key: string]: JSX.Element } = {
       "/": <HomeResume />,
+      "/home-resume": <HomeResume />,
       "/keyword-generator": <KeywordGenerator />,
       "/compare-job-resume": <CompareJobResume />,
       "/dashboard-resume": <DashboardResume results={details} />,
@@ -54,7 +55,9 @@ export default function Home() {
     
   return (
     <div>
-      {currentComponent}
+      <UserProvider>
+        {currentComponent}
+      </UserProvider>
     </div>
   );
 }
