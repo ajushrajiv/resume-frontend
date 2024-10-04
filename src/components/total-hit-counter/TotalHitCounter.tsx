@@ -3,29 +3,30 @@
 import WebSocketClient from '@/api/config/websocket-client';
 import React, { useEffect, useState } from 'react';
 
-const websocketUrl = process.env.NEXT_PUBLIC_WEBSOCKET_URL || '';
-
-const socket = new WebSocketClient(websocketUrl);
-
 function TotalHitCounter(){
     const [totalHits, setTotalHits] = useState<number | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const websocketUrl = process.env.NEXT_PUBLIC_WEBSOCKET_URL || '';
+
     useEffect(() => {
-        console.log("web socketUrl",websocketUrl);
-        const handleTotalHitsUpdate = (data: any) => {
-            if (data && data.totalHits) {
-                setTotalHits(data.totalHits);
-                setLoading(false);
-            }
-        };
+        if (typeof window !== 'undefined') {
+            const socket = new WebSocketClient(websocketUrl);
+            console.log("web socketUrl",websocketUrl);
+            const handleTotalHitsUpdate = (data: any) => {
+                if (data && data.totalHits) {
+                    setTotalHits(data.totalHits);
+                    setLoading(false);
+                }
+            };
 
-        socket.on('totalHits', handleTotalHitsUpdate);
+            socket.on('totalHits', handleTotalHitsUpdate);
 
-        return () => {
-            socket.close();
-        };
-    }, []);
+            return () => {
+                socket.close();
+            };
+        }
+    }, [websocketUrl]);
 
     return (
         <div className='font-glegoo'>

@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.4.6",
+    "@nextui-org/react": "^2.4.8",
     "axios": "^1.7.4",
     "date-fns": "^3.6.0",
     "docx": "^8.5.0",

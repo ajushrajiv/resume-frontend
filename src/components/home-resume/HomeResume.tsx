@@ -3,9 +3,11 @@
 import React from 'react';
 import Image from 'next/image';
 import DescriptionCard from '../reusable-components/DescriptionCard';
-import TotalHitCounter from '../total-hit-counter/TotalHitCounter';
-import UserCountDisplay from '../user-count-display/UserCountDisplay';
 import BentoGrid from '../bento-grid/BentoGrid';
+import dynamic from 'next/dynamic';
+
+const UserCountDisplay = dynamic(() => import('../user-count-display/UserCountDisplay'), { ssr: false });
+const TotalHitCounter = dynamic(() => import('../total-hit-counter/TotalHitCounter'), { ssr: false });
 
 function HomeResume() {
   return (
@@ -49,7 +51,7 @@ function HomeResume() {
           />
         </div>
 
-        <div className='flex justify-center items-center m-40'>
+        <div className='flex justify-center items-center mx-72 my-24'>
           <BentoGrid />
         </div>
       </div>
