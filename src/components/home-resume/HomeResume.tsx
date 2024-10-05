@@ -121,4 +121,12 @@ function HomeResume() {
   );
 }
 
+export async function getServerSideProps() {
+
+  return {
+    props: {
+      data: null, 
+    },
+  };
+}
 export default HomeResume;
