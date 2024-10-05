@@ -3,6 +3,9 @@ frontend:
   phases:
     preBuild:
       commands:
+        - nvm install 22  # Install Node.js version 22.x
+        - nvm use 22      # Use Node.js version 22.x
+        - node --version  # Check the Node.js version being used
         - npm ci 
     build:
       commands:
