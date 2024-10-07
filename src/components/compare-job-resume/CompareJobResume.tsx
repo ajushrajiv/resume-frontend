@@ -13,7 +13,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import { handleFileChange } from '@/utils/FileHandler';
 import LoginModal from '../reusable-components/LoginModal';
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
+//pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
 function CompareJobResume() {
 

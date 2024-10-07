@@ -14,7 +14,7 @@ import deleteJobById from '@/api/v1/summary/summary-mutations/DeleteJobById';
 import { handleFileChange } from '@/utils/FileHandler';
 import * as pdfjsLib from 'pdfjs-dist';
 import UploadSummaryButton from '../reusable-components/UploadSummaryButton';
-pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
+//pdfjsLib.GlobalWorkerOptions.workerSrc = '/js/pdf.worker.min.mjs';
 
 
 function SummaryJobResume() {
