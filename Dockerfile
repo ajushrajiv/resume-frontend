@@ -1,30 +1,17 @@
-FROM node:22.8.0-alpine
+FROM node:latest
 
 WORKDIR /usr/src/app
 
-RUN apk update && \
-    apk add --no-cache \
-    bash \
-    curl \
-    git \
-    openssh-client && \
-    rm -rf /var/cache/apk/*
-
-RUN bash --version && \
-    curl --version && \
-    git --version && \
-    ssh -V && \
-    node -v && \
-    npm -v
-
 COPY package*.json ./
 
-RUN npm ci --only=production
+RUN npm install
 
 COPY . .
 
-RUN npm run build
+ARG NEXT_PUBLIC_WEBSOCKET_URL
+ARG NEXT_PUBLIC_API_HOST
 
-EXPOSE 3000
+ENV NEXT_PUBLIC_WEBSOCKET_URL=${NEXT_PUBLIC_WEBSOCKET_URL}
+ENV NEXT_PUBLIC_API_HOST=${NEXT_PUBLIC_API_HOST}
 
-CMD ["npm", "start"]
+CMD ["npm", "dev"]

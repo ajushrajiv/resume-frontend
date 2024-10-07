@@ -40,12 +40,12 @@ export default function Home() {
 
     const routeComponentMap: { [key: string]: JSX.Element } = {
       "/": <HomeResume />,
-      "/home-resume": <HomeResume />,
+      // "/home-resume": <HomeResume />,
       "/keyword-generator": <KeywordGenerator />,
       "/compare-job-resume": <CompareJobResume />,
       "/dashboard-resume": <DashboardResume results={details} />,
       "/summary-job-resume": <SummaryJobResume />,
-      "/signup": <Signup />
+      "/signup": <Signup />,
     };
 
     const currentComponent = routeComponentMap[pathname] || (
